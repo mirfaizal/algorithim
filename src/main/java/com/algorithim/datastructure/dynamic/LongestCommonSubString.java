@@ -1,4 +1,4 @@
-package com.algorithim.misc;
+package com.algorithim.datastructure.dynamic;
 
 public class LongestCommonSubString {
     public int longestCommonSubString(String text1, String text2) {
@@ -13,7 +13,9 @@ public class LongestCommonSubString {
                 }
                 if (max < temp[i][j]) {
                     max = temp[i][j];
+                    System.out.println(i+" "+j);
                 }
+
             }
         }
         return max;
