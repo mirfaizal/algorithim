@@ -11,9 +11,9 @@ public class Anagrams {
         System.out.println(anagrams.anagrams("RAIL! SAFETY!", "fairy tales")); // should return true
         System.out.println(anagrams.anagrams("Hello", "solleH")); // should return false
 
-        System.out.println(anagrams.anagramUsingSort("rail safety", "fairy tales")); // should return true
-        System.out.println(anagrams.anagramUsingSort("RAIL! SAFETY!", "fairy tales")); // should return true
-        System.out.println(anagrams.anagramUsingSort("Hello", "solleH")); // should return false
+        System.out.println(anagrams.isAnagram("rail safety", "fairy tales")); // should return true
+        System.out.println(anagrams.isAnagram("RAIL! SAFETY!", "fairy tales")); // should return true
+        System.out.println(anagrams.isAnagram("Hello", "solleH")); // should return false
     }
 
     private boolean anagrams(String stringOne, String stringTwo) {
@@ -64,5 +64,16 @@ public class Anagrams {
                 stringMap.put(c,1);
             }
         }
+    }
+
+    public boolean isAnagram(String stringOne, String stringTwo ){
+
+        int [] counts = new int[100];
+        for(int i=0;i<stringOne.length();i++){
+            counts[stringOne.charAt(i) - 'a']++;
+            counts[stringTwo.charAt(i) - 'a']--;
+        }
+
+        return true;
     }
 }
