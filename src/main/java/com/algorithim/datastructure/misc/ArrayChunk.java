@@ -1,6 +1,4 @@
-package com.algorithim.misc;
-
-import java.util.Arrays;
+package com.algorithim.datastructure.misc;
 
 public class ArrayChunk {
     public static void main(String[] args) {

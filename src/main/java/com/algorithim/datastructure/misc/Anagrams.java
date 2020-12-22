@@ -1,4 +1,4 @@
-package com.algorithim.misc;
+package com.algorithim.datastructure.misc;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,13 +7,11 @@ import java.util.Map;
 public class Anagrams {
     public static void main(String[] args) {
         Anagrams anagrams = new Anagrams();
-        System.out.println(anagrams.anagrams("rail safety", "fairy tales")); // should return true
-        System.out.println(anagrams.anagrams("RAIL! SAFETY!", "fairy tales")); // should return true
-        System.out.println(anagrams.anagrams("Hello", "solleH")); // should return false
+        System.out.println(anagrams.anagrams("railsafety", "fairytales")); // should return true
+        System.out.println(anagrams.anagrams("hello", "solleh")); // should return false
 
-        System.out.println(anagrams.isAnagram("rail safety", "fairy tales")); // should return true
-        System.out.println(anagrams.isAnagram("RAIL! SAFETY!", "fairy tales")); // should return true
-        System.out.println(anagrams.isAnagram("Hello", "solleH")); // should return false
+        System.out.println(anagrams.isAnagram("railsafety", "fairytales")); // should return true
+        System.out.println(anagrams.isAnagram("hello", "solleh")); // should return false
     }
 
     private boolean anagrams(String stringOne, String stringTwo) {
@@ -66,14 +64,14 @@ public class Anagrams {
         }
     }
 
+    // O(n)
     public boolean isAnagram(String stringOne, String stringTwo ){
-
-        int [] counts = new int[100];
+        if(stringOne.length() != stringTwo.length()) return false;
+        int [] counts = new int[128];
         for(int i=0;i<stringOne.length();i++){
             counts[stringOne.charAt(i) - 'a']++;
             counts[stringTwo.charAt(i) - 'a']--;
         }
-
         return true;
     }
 }

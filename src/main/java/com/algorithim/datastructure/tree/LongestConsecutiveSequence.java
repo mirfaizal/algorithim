@@ -1,10 +1,50 @@
 package com.algorithim.datastructure.tree;
 
-public class BinaryTree {
+public class LongestConsecutiveSequence {
+
+    public static void main(String[] args) {
+        LongestConsecutiveSequence lcs = new LongestConsecutiveSequence();
+        lcs.insert(50, "Faizal");
+        lcs.insert(30, "Ali");
+        lcs.insert(20, "Mir");
+        lcs.insert(21, "Mir1");
+        lcs.insert(22, "Mir2");
+        lcs.insert(40, "Samiya");
+        lcs.insert(70, "Shaikh");
+        lcs.insert(60, "Faris");
+        lcs.insert(80, "Jonefa");
+        System.out.println(lcs.longestConsecutiveSequence(lcs.root));
+        lcs.display();
+        lcs.delete(22);
+        System.out.println(lcs.longestConsecutiveSequence(lcs.root));
+        lcs.display();
+    }
+
+    private int longestConsecutiveSequence(Node node) {
+        int[] max = new int[1];
+        longestConsecutiveSequence(node, 0, 0, max);
+        return max[0];
+    }
+
+    private void longestConsecutiveSequence(Node node, int value, int target, int[] max) {
+        if (node == null) {
+            return;
+        } else if (node.key == target) {
+            value++;
+        } else {
+            value = 1;
+        }
+        max[0] = Math.max(max[0], value);
+        longestConsecutiveSequence(node.left, value, node.key + 1, max);
+        longestConsecutiveSequence(node.right, value, node.key + 1, max);
+    }
+
     class Node {
+        Node left;
+        Node right;
         int key;
         String value;
-        Node left, right;
+
         Node(int key, String value) {
             this.key = key;
             this.value = value;
@@ -13,7 +53,7 @@ public class BinaryTree {
 
     private Node root;
 
-    public void insert(int key, String value) {
+    private void insert(int key, String value) {
         root = insert(root, key, value);
     }
 
@@ -25,7 +65,7 @@ public class BinaryTree {
         }
         if (key < node.key) {
             node.left = insert(node.left, key, value);
-        } else {
+        } else  {
             node.right = insert(node.right, key, value);
         }
         return node;
@@ -33,20 +73,21 @@ public class BinaryTree {
 
     private String find(int key) {
         Node node = find(root, key);
-        return (node == null) ? null : node.value;
+        return node == null ? null : node.value;
     }
 
     private Node find(Node node, int key) {
-        if (node == null || node.key == key) {
+        if (node.key == key) {
             return node;
-        } else if (key < node.key) {
+        } else if (node.key < key) {
             return find(node.left, key);
-        } else {
+        } else if (node.key > key) {
             return find(node.right, key);
         }
+        return node;
     }
 
-    public void delete(int key) {
+    private void delete(int key) {
         root = delete(root, key);
     }
 
@@ -82,44 +123,18 @@ public class BinaryTree {
         return node;
     }
 
-    private void preOrderTraverse(Node node) {
-        if (node == null) {
+    private void display() {
+        display(root);
+    }
+
+    private void display(Node root) {
+        if (root == null) {
             return;
         }
-        if (node != null) {
-            System.out.println(node.key + " : " + node.value);
-            preOrderTraverse(node.left);
-            preOrderTraverse(node.right);
+        if (root != null) {
+            display(root.left);
+            System.out.print(root.key + " ");
+            display(root.right);
         }
-    }
-
-    public void preOrderTraverse(String prefix, Node n, boolean isLeft) {
-        if (n != null) {
-            System.out.println(prefix + (isLeft ? "|-- " : "\\-- ") + n.value);
-            preOrderTraverse(prefix + (isLeft ? "|   " : "    "), n.left, true);
-            preOrderTraverse(prefix + (isLeft ? "|   " : "    "), n.right, false);
-        }
-    }
-
-    public void display() {
-        preOrderTraverse(root);
-        preOrderTraverse("", root, false);
-    }
-
-    public static void main(String[] args) {
-        BinaryTree lcs = new BinaryTree();
-        lcs.insert(11, "Faizal");
-        lcs.insert(2, "Ali");
-        lcs.insert(12, "Mir");
-        lcs.insert(4, "Samiya");
-        lcs.insert(13, "Shaikh");
-        lcs.insert(6, "Faris");
-        lcs.insert(14, "Jonefa");
-        lcs.insert(8, "Mehnaj");
-        //System.out.println(lcs.longestConsecutiveSequence(lcs.root));
-        lcs.display();
-        lcs.delete(80);
-        //System.out.println(lcs.longestConsecutiveSequence(lcs.root));
-        lcs.display();
     }
 }

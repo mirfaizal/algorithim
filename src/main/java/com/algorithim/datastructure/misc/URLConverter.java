@@ -1,6 +1,4 @@
-package com.algorithim.misc;
-
-import java.net.URI;
+package com.algorithim.datastructure.misc;
 
 public class URLConverter {
     public static void main(String[] args) {

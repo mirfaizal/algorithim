@@ -1,4 +1,4 @@
-package com.algorithim.misc;
+package com.algorithim.datastructure.misc;
 
 public class Palindrome {
     public static void main(String[] args) {

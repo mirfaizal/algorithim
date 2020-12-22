@@ -55,6 +55,8 @@ public class FindContiguousHistory {
 
     private String[] findContiguousHistory(String [] arrayOne, String [] arrayTwo){
         String [] contiguousArray;
+        String [] temporaryArray = new String[10];
+        int index1 =0;
         int max =0;
         int [][] tempArray = new int[arrayOne.length + 1][arrayTwo.length + 1];
         int [] arrayOnePosition = new int[arrayOne.length];
@@ -64,6 +66,7 @@ public class FindContiguousHistory {
             for(int j=1; j< arrayTwo.length + 1; j++){
                 if(arrayOne[i-1] == arrayTwo[j-1]){
                     tempArray[i][j] = tempArray[i-1][j-1] + 1;
+                    temporaryArray[index1++] = arrayOne[i-1];
                 } else {
                     tempArray[i][j] = Math.max(tempArray[i][j-1] , tempArray[i-1][j]);
                 }

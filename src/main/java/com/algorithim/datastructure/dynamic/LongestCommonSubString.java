@@ -13,7 +13,7 @@ public class LongestCommonSubString {
                 }
                 if (max < temp[i][j]) {
                     max = temp[i][j];
-                    System.out.println(i+" "+j);
+                    System.out.println(textOneCharArray[i-1]+" "+textTwoCharArray[j-1]);
                 }
 
             }

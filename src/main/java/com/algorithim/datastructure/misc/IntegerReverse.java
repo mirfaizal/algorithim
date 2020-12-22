@@ -1,6 +1,4 @@
-package com.algorithim.misc;
-
-import java.io.InputStream;
+package com.algorithim.datastructure.misc;
 
 public class IntegerReverse {
     public static void main(String[] args) {
