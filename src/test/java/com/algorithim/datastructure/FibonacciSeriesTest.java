@@ -1,5 +1,6 @@
 package com.algorithim.datastructure;
 
+import com.algorithim.datastructure.dynamic.FibonacciSeries;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;

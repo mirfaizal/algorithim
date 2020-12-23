@@ -1,4 +1,4 @@
-package com.algorithim.datastructure;
+package com.algorithim.datastructure.misc;
 
 import lombok.extern.slf4j.Slf4j;
 

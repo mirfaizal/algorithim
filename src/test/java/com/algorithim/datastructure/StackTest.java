@@ -1,5 +1,6 @@
 package com.algorithim.datastructure;
 
+import com.algorithim.datastructure.misc.Stack;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
