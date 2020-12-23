@@ -19,7 +19,7 @@ public class FibonacciSeries {
         }else if(n == 1){
             return 1;
         }else if(memo[n] == 0){
-            memo[n] = fib(n - 1) + fib(n - 2);
+            memo[n] = fibMemoize(n - 1) + fibMemoize(n - 2);
         }
         return memo[n];
     }
