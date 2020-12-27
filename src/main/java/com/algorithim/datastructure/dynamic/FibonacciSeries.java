@@ -18,9 +18,9 @@ public class FibonacciSeries {
         System.out.println(getDateTime());
         System.out.println(fibonacciSeries.fib(20));
         System.out.println(getDateTime());
-        System.out.println(fibonacciSeries.fibMemoize(200));
+        System.out.println(fibonacciSeries.fibMemoize(20));
         System.out.println(getDateTime());
-        System.out.println(fibonacciSeries.fibBottomUp(1000));
+        System.out.println(fibonacciSeries.fibBottomUp(20));
         System.out.println(getDateTime());
     }
 

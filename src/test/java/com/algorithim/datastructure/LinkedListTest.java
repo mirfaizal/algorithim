@@ -13,7 +13,7 @@ public class LinkedListTest {
     private LinkedList linkedList;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         linkedList = new LinkedList();
     }
 
@@ -22,7 +22,8 @@ public class LinkedListTest {
         linkedList.addFront(1);
         linkedList.addFront(2);
         linkedList.addFront(3);
-        Assert.assertEquals(1,linkedList.getLast());
+        linkedList.delete(1);
+        Assert.assertEquals(2,linkedList.getLast());
         Assert.assertEquals(3,linkedList.getFirst());
     }
 
@@ -32,20 +33,47 @@ public class LinkedListTest {
         linkedList.addFront(1);
         linkedList.addBack(2);
         linkedList.addBack(3);
-        //Assert.assertEquals(3,linkedList.getLast());
-        //Assert.assertEquals(1,linkedList.getFirst());
-        //linkedList.
-        //System.out.println(linkedList.toString());
     }
 
     @Test
-    public void testGetFirst(){
-
+    public void testRemoveDuplicate(){
+        linkedList = new LinkedList();
+        linkedList.addFront(1);
+        linkedList.addFront(2);
+        linkedList.addFront(3);
+        linkedList.addFront(4);
+        linkedList.addFront(1);
+        linkedList.addFront(2);
+        linkedList.addFront(3);
+        linkedList.display();
+        linkedList.removeDuplicate();
+        Assert.assertEquals(4,linkedList.size());
     }
 
     @Test
-    public void testGetLast(){
-
+    public void testKthToLast(){
+        linkedList = new LinkedList();
+        linkedList.addFront(1);
+        linkedList.addFront(2);
+        linkedList.addFront(3);
+        linkedList.addFront(4);
+        linkedList.addFront(1);
+        linkedList.addFront(2);
+        linkedList.addFront(3);
+        Assert.assertEquals(2,linkedList.kthToLast());
     }
 
+    @Test
+    public void testSumLinkedList(){
+        linkedList = new LinkedList();
+        linkedList.addFront(6);
+        linkedList.addFront(1);
+        linkedList.addFront(7);
+        LinkedList linkedListTwo= new LinkedList();
+        linkedListTwo.addFront(2);
+        linkedListTwo.addFront(9);
+        linkedListTwo.addFront(5);
+        linkedListTwo.reverse();
+        //System.out.println(linkedList.sumLinkedListBruteForce(linkedList.getFirstNode(),linkedListTwo.getFirstNode()));
+    }
 }
