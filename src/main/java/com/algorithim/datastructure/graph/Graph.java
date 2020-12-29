@@ -19,7 +19,7 @@ public class Graph {
         }
     }
     private void addEdge(int source, int destination){
-        //adjList[source].add(destination);
+        adjList[source].add(destination);
         adjList[destination].add(source);
     }
 
@@ -32,7 +32,8 @@ public class Graph {
             if(!visited.contains(vertex)) {
                 visited.add(vertex);
                 for (int edge : adjList[vertex]) {
-                    stack.push(edge);
+                    //if(!stack.contains(edge))
+                        stack.push(edge);
                 }
             }
         }
@@ -56,18 +57,42 @@ public class Graph {
         return visited;
     }
 
+    private boolean hasCycle(List<Integer> [] adjList, int root){
+        Set<Integer> visited = new LinkedHashSet<>();
+        Stack<Integer> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            int vertex = stack.pop();
+            if(!visited.contains(vertex)){
+                visited.add(vertex);
+                for(int edge: adjList[vertex]){
+                    if(!stack.contains(edge)) stack.push(edge);
+                }
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
         Graph graph = new Graph(5);
         graph.addEdge(0,1);
-        graph.addEdge(0,2);
         graph.addEdge(0,3);
+        graph.addEdge(2,0);
+        graph.addEdge(3,2);
+        graph.addEdge(2,1);
         graph.addEdge(1,4);
-        graph.addEdge(2,4);
+        //graph.addEdge(4,2);
         graph.display(graph.vertices, graph.adjList);
-        graph.dfs(graph.adjList, 4).stream().forEach(e -> System.out.print(e.intValue()));
+        graph.dfs(graph.adjList, 3).stream().forEach(e -> System.out.print(e.intValue()));
         System.out.println();
-        graph.bfs(graph.adjList, 4).stream().forEach(e -> System.out.print(e.intValue()));
+        graph.dfs(graph.adjList, 1).stream().forEach(e -> System.out.print(e.intValue()));
+        System.out.println();
+        graph.bfs(graph.adjList, 3).stream().forEach(e -> System.out.print(e.intValue()));
+        System.out.println();
+        System.out.println("hasCycle - "+graph.hasCycle(graph.adjList, 0));
     }
 
     private void display(int vertices, List<Integer> [] adjList) {
