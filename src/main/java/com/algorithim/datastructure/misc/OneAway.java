@@ -3,10 +3,10 @@ package com.algorithim.datastructure.misc;
 public class OneAway {
     public static void main(String[] args) {
         OneAway oneAway = new OneAway();
-        System.out.println(oneAway.oneAway("pale", "ple"));
+        //System.out.println(oneAway.oneAway("pale", "ple"));
         System.out.println(oneAway.oneAway("pales", "pale"));
-        System.out.println(oneAway.oneAway("pale", "bale"));
-        System.out.println(oneAway.oneAway("pale", "bake"));
+        //System.out.println(oneAway.oneAway("pale", "bale"));
+        //System.out.println(oneAway.oneAway("pale", "bake"));
     }
 
     private boolean oneAway(String s1, String s2) {

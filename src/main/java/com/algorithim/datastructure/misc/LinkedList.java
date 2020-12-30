@@ -1,7 +1,5 @@
 package com.algorithim.datastructure.misc;
 
-import java.util.List;
-
 public class LinkedList {
     private Node head;
 
@@ -85,6 +83,33 @@ public class LinkedList {
         }
     }
 
+    public Node insertNodeAtPosition(int data, int position) {
+        Node newNode = new  Node(data);
+        Node current = head, previous = null;
+        int i = 0;
+        while(current.next != null && i < position) {
+            previous = current;
+            current = current.next;
+            i++;
+        }
+        previous.next = newNode;
+        newNode.next = current;
+        return head;
+    }
+
+    public boolean hasCycle() {
+        Node current = head;
+        Node next = head;
+        while(next != null && next.next != null){
+            current = current.next;
+            next = next.next.next;
+            if(current == next){
+                return true;
+            }
+        }
+        return false;
+    }
+
     // O(n^2) times
     public void removeDuplicate(){
         if(head == null){
@@ -146,18 +171,16 @@ public class LinkedList {
 
     public char [] sumLinkedListBruteForce(Node listOne, Node listTwo){
         StringBuilder numberOne = new StringBuilder();
-        while(listOne.next != null){
+        while(listOne != null){
             numberOne.append(listOne.data);
             listOne = listOne.next;
         }
-        numberOne.append(listOne.data);
         //numberOne.reverse();
         StringBuilder numberTwo = new StringBuilder();
-        while(listTwo.next != null){
+        while(listTwo != null){
             numberTwo.append(listTwo.data);
             listTwo = listTwo.next;
         }
-        numberTwo.append(listTwo.data);
         //numberTwo.reverse();
         Integer numOne = Integer.parseInt(numberOne.toString());
         Integer numTwo = Integer.parseInt(numberTwo.toString());
