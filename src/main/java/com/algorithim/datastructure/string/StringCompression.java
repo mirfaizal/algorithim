@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.string;
 
 import java.util.Map;
 import java.util.HashMap;

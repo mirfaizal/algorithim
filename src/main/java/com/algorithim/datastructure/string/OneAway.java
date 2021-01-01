@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.string;
 
 public class OneAway {
     public static void main(String[] args) {

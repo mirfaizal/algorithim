@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.basic;
 
 public class HashTable {
 

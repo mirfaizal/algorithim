@@ -1,6 +1,6 @@
 package com.algorithim.datastructure;
 
-import com.algorithim.datastructure.misc.HashTable;
+import com.algorithim.datastructure.basic.HashTable;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

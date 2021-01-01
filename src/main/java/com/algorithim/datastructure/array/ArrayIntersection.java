@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.array;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,6 +1,6 @@
 package com.algorithim.datastructure;
 
-import com.algorithim.datastructure.misc.Queue;
+import com.algorithim.datastructure.basic.QueueOld;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +10,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class QueueTest {
 
-    private Queue queue;
+    private QueueOld queue;
 
     @Before
     public void setUp() throws Exception {
-        queue = new Queue();
+        queue = new QueueOld();
     }
 
     @Test

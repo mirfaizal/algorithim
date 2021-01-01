@@ -1,6 +1,6 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.basic;
 
-public class Stack {
+public class StackOld {
     private final class Node {
         private int data;
         private Node next;

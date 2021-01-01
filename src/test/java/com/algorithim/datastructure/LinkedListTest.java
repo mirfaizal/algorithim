@@ -1,6 +1,6 @@
 package com.algorithim.datastructure;
 
-import com.algorithim.datastructure.misc.LinkedList;
+import com.algorithim.datastructure.basic.LinkedList;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

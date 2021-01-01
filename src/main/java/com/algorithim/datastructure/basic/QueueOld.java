@@ -1,6 +1,6 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.basic;
 
-public class Queue {
+public class QueueOld {
 
 
     private final class Node {

@@ -1,6 +1,6 @@
 package com.algorithim.datastructure;
 
-import com.algorithim.datastructure.misc.Stack;
+import com.algorithim.datastructure.basic.StackOld;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +10,11 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.Silent.class)
 public class StackTest {
 
-    private Stack stack;
+    private StackOld stack;
 
     @Before
     public void setUp() throws Exception {
-        stack = new Stack();
+        stack = new StackOld();
     }
 
     @Test

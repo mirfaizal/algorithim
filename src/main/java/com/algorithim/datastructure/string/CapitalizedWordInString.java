@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.string;
 
 public class CapitalizedWordInString {
     public static void main(String[] args) {

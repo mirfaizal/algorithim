@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.string;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,8 +15,6 @@ public class Anagrams {
     }
 
     private boolean anagrams(String stringOne, String stringTwo) {
-        stringOne = stringOne.replace("!","");
-        stringTwo = stringTwo.replace("!","");
         Map<Character, Integer> stringOneMap = new HashMap<>(), stringTwoMap = new HashMap<>();
         createMapFromString(stringOne.toLowerCase(), stringOneMap);
         createMapFromString(stringTwo.toLowerCase(), stringTwoMap);
@@ -32,8 +30,6 @@ public class Anagrams {
     }
 
     private boolean anagramUsingSort(String stringOne, String stringTwo){
-        stringOne = stringOne.replace("!","");
-        stringTwo = stringTwo.replace("!","");
         char[] stringOneCharArray = stringOne.toCharArray();
         char[] stringTwoCharArray = stringTwo.toCharArray();
         Arrays.sort(stringOneCharArray);

@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.algorithim.datastructure.array;
 
 public class TwoDArray {
     public static void main(String[] args) {
