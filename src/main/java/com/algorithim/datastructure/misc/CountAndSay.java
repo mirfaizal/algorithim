@@ -1,6 +1,6 @@
-package com.algorithim.datastructure.map;
+package com.algorithim.datastructure.misc;
 
-public class MultiMapExample {
+public class CountAndSay {
     public static String countAndSay(int n) {
         StringBuilder current = new StringBuilder();
         StringBuilder previous = new StringBuilder("1");

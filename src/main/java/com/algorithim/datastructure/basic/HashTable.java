@@ -22,7 +22,7 @@ public class HashTable {
     }
 
     private int getIndex(String key){
-        return key.hashCode() * 0x7fffffff % INITIAL_SIZE;
+        return key.hashCode() & 0x7fffffff % INITIAL_SIZE;
     }
 
     public void put(String key , String value){
