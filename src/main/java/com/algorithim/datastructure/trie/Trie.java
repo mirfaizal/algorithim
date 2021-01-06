@@ -12,7 +12,7 @@ public class Trie {
             endOfWord = false;
         }
     }
-    private Node root;
+    private final Node root;
     public Trie() {
         root = new Node();
     }

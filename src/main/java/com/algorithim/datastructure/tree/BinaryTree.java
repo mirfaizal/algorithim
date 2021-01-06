@@ -1,5 +1,8 @@
 package com.algorithim.datastructure.tree;
 
+
+import java.util.Stack;
+
 public class BinaryTree {
     class Node {
         int key;
@@ -34,6 +37,10 @@ public class BinaryTree {
     private String find(int key) {
         Node node = find(root, key);
         return (node == null) ? null : node.value;
+    }
+
+    private Node findNode(int key) {
+        return find(root, key);
     }
 
     private Node find(Node node, int key) {
@@ -120,20 +127,58 @@ public class BinaryTree {
         return root;
     }
 
+    private Node lca(Node root, int v1, int v2){
+        if(v1 == v2) return findNode(v1);
+        Stack<Node> pathToV1 = pathTo(root,v1);
+        Stack<Node> pathToV2 = pathTo(root,v2);
+        if(pathToV1 == null || pathToV2 == null) return null;
+        Node curr = null;
+        while(!pathToV1.isEmpty() && !pathToV2.isEmpty()){
+            Node one = pathToV1.pop();
+            Node two = pathToV2.pop();
+            if(one.key == two.key) curr = one;
+            else break;
+        }
+        return curr;
+    }
+
+    private Stack<Node> pathTo(Node root, int n) {
+        if(root == null) return null;
+        if(root.key == n){
+            Stack<Node> stack = new Stack<>();
+            stack.push(root);
+            return stack;
+        }
+        Stack<Node> stackLeft = pathTo(root.left,n);
+        Stack<Node> stackRight = pathTo(root.right,n);
+        if(stackLeft != null){
+            stackLeft.push(root);
+            return stackLeft;
+        }
+        if(stackRight != null){
+            stackRight.push(root);
+            return stackRight;
+        }
+        return null;
+    }
+
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.insert(11, "Faizal");
         binaryTree.insert(2, "Claudia");
-        binaryTree.insert(12, "Jenne");
+        binaryTree.insert(14, "Jenne");
         binaryTree.insert(4, "Marsha");
-        binaryTree.insert(13, "Nora");
         binaryTree.insert(6, "Daniel");
-        binaryTree.insert(14, "Anna");
+        binaryTree.insert(18, "Anna");
+        binaryTree.insert(19, "Nora");
         binaryTree.insert(8, "Ping Ping");
         binaryTree.insert(1, "Kate");
         binaryTree.insert(3, "Rachel");
         binaryTree.insert(5, "Carme");
+        binaryTree.insert(12, "Jamie");
         binaryTree.display();
-        System.out.println(binaryTree.lcaRecursion(binaryTree.root,5,8).key);
+        System.out.println(binaryTree.lcaRecursion(binaryTree.root,12,19).key);
+        System.out.println(binaryTree.lca(binaryTree.root,12,19).key);
     }
 }

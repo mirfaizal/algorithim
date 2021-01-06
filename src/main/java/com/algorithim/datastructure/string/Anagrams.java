@@ -42,10 +42,7 @@ public class Anagrams {
         for(char c: stringTwoCharArray){
             stringBuilderTwo.append(c);
         }
-        if(stringBuilderOne.toString().equalsIgnoreCase(stringBuilderTwo.toString())){
-            return true;
-        }
-        return false;
+        return stringBuilderOne.toString().equalsIgnoreCase(stringBuilderTwo.toString());
     }
 
     private void createMapFromString(String string, Map<Character, Integer> stringMap) {

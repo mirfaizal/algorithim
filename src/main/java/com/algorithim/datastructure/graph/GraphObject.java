@@ -39,7 +39,7 @@ public class GraphObject {
         }
     }
 
-    private Map<Vertex, List<Vertex>> adjVertices = new HashMap<>();
+    private final Map<Vertex, List<Vertex>> adjVertices = new HashMap<>();
 
     private void addVertex(String label){
         adjVertices.put(new Vertex(label), new ArrayList<>());

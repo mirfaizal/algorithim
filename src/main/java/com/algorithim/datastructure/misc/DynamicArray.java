@@ -38,7 +38,7 @@ public class DynamicArray {
 
     private void resize() {
         int doubleCapacity = capacity * 2;
-        Object doubleArray[] = new Object[doubleCapacity];
+        Object[] doubleArray = new Object[doubleCapacity];
         for (int i = 0; i < capacity; i++) {
             doubleArray[i] = array[i];
         }

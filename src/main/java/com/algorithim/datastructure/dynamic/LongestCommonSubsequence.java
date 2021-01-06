@@ -5,7 +5,7 @@ public class LongestCommonSubsequence {
         int max = 0;
         char[] textOneCharArray = text1.toCharArray();
         char[] textTwoCharArray = text2.toCharArray();
-        int temp[][] = new int[textOneCharArray.length + 1][textTwoCharArray.length + 1];
+        int[][] temp = new int[textOneCharArray.length + 1][textTwoCharArray.length + 1];
         for (int i = 1; i < textOneCharArray.length; i++) {
             for (int j = 1; j < textTwoCharArray.length ; j++) {
                 if (textOneCharArray[i - 1] == textTwoCharArray[j - 1]) {

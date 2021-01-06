@@ -3,9 +3,9 @@ package com.algorithim.datastructure.string;
 import java.util.*;
 
 public class HashCodeAndEquals {
-    private String name;
-    private int age;
-    private String passport;
+    private final String name;
+    private final int age;
+    private final String passport;
 
     public HashCodeAndEquals(String name, int age, String passport) {
         this.name = name;

@@ -2,7 +2,7 @@ package com.algorithim.datastructure.string;
 
 public class Permutation {
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Permutation permutation = new Permutation();
         System.out.println(permutation.isPermutation("abc1", "ab1c"));
         System.out.println(permutation.isPermutation("abc1", "a1cb"));

@@ -5,8 +5,8 @@ import java.util.Objects;
 public class DynamicHashTable {
 
     final class Node {
-        private String key;
-        private Object value;
+        private final String key;
+        private final Object value;
         private Node next;
 
         Node(String key, Object value) {

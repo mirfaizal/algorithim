@@ -2,7 +2,7 @@ package com.algorithim.datastructure.basic;
 
 public class StackOld {
     private final class Node {
-        private int data;
+        private final int data;
         private Node next;
 
         public Node(int data) {
@@ -55,9 +55,7 @@ public class StackOld {
             current = current.next;
         }
         if(current.next == null){
-            if(current.data == data){
-                return true;
-            }
+            return current.data == data;
         }
 
 

@@ -33,7 +33,7 @@ public class FibonacciSeries {
             return fib(n - 1) + fib(n - 2);
         }
     }
-    private int[] memo = new int[1001];
+    private final int[] memo = new int[1001];
     public Integer fibMemoize(int n){
         if(n <= 0) {
             return 0;

@@ -4,7 +4,7 @@ public class IntegerReverse {
     public static void main(String[] args) {
         IntegerReverse integerReverse = new IntegerReverse();
         //System.out.println(integerReverse.reverse(123456));
-        integerReverse.permutation("abc");
+        permutation("abc");
     }
 
     public static void permutation(String str) {

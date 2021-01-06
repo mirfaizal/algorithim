@@ -4,7 +4,7 @@ public class QueueOld {
 
 
     private final class Node {
-        private int data;
+        private final int data;
         private Node next;
 
         public Node(int data) {
@@ -58,9 +58,7 @@ public class QueueOld {
         }
 
         if(current.next == null){
-            if(current.data == data){
-                return true;
-            }
+            return current.data == data;
         }
 
         return false;

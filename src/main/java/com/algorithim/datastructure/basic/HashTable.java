@@ -5,9 +5,9 @@ public class HashTable {
     private final int INITIAL_SIZE = 16;
 
     final class Node {
-        private String key;
-        private String value;
-        private Node next;
+        private final String key;
+        private final String value;
+        private final Node next;
         public Node(String key, String value) {
             this.key = key;
             this.value = value;
@@ -15,7 +15,7 @@ public class HashTable {
         }
     }
 
-    private Node[] data;
+    private final Node[] data;
 
     public HashTable(){
         this.data = new Node[INITIAL_SIZE];
