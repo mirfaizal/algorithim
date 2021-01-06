@@ -46,6 +46,8 @@ public class BinaryTree {
         }
     }
 
+
+
     public void delete(int key) {
         root = delete(root, key);
     }
@@ -106,20 +108,32 @@ public class BinaryTree {
         preOrderTraverse("", root, false);
     }
 
+    // Lowest Common Ancestor
+    private Node lcaRecursion(Node root, int v1, int v2){
+        if(v1 > root.key && v2 > root.key){
+            System.out.println("Right"+root.key);
+            return lcaRecursion(root.right, v1, v2);
+        } else if (v1 < root.key && v2 < root.key){
+            System.out.println("Left"+root.key);
+            return lcaRecursion(root.left, v1, v2);
+        }
+        return root;
+    }
+
     public static void main(String[] args) {
-        BinaryTree lcs = new BinaryTree();
-        lcs.insert(11, "Faizal");
-        lcs.insert(2, "Ali");
-        lcs.insert(12, "Mir");
-        lcs.insert(4, "Samiya");
-        lcs.insert(13, "Shaikh");
-        lcs.insert(6, "Faris");
-        lcs.insert(14, "Jonefa");
-        lcs.insert(8, "Mehnaj");
-        //System.out.println(lcs.longestConsecutiveSequence(lcs.root));
-        lcs.display();
-        lcs.delete(80);
-        //System.out.println(lcs.longestConsecutiveSequence(lcs.root));
-        lcs.display();
+        BinaryTree binaryTree = new BinaryTree();
+        binaryTree.insert(11, "Faizal");
+        binaryTree.insert(2, "Claudia");
+        binaryTree.insert(12, "Jenne");
+        binaryTree.insert(4, "Marsha");
+        binaryTree.insert(13, "Nora");
+        binaryTree.insert(6, "Daniel");
+        binaryTree.insert(14, "Anna");
+        binaryTree.insert(8, "Ping Ping");
+        binaryTree.insert(1, "Kate");
+        binaryTree.insert(3, "Rachel");
+        binaryTree.insert(5, "Carme");
+        binaryTree.display();
+        System.out.println(binaryTree.lcaRecursion(binaryTree.root,5,8).key);
     }
 }
