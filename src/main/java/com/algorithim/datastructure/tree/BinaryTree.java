@@ -1,6 +1,8 @@
 package com.algorithim.datastructure.tree;
 
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class BinaryTree {
@@ -8,6 +10,7 @@ public class BinaryTree {
         int key;
         String value;
         Node left, right;
+
         Node(int key, String value) {
             this.key = key;
             this.value = value;
@@ -52,7 +55,6 @@ public class BinaryTree {
             return find(node.right, key);
         }
     }
-
 
 
     public void delete(int key) {
@@ -116,50 +118,96 @@ public class BinaryTree {
     }
 
     // Lowest Common Ancestor
-    private Node lcaRecursion(Node root, int v1, int v2){
-        if(v1 > root.key && v2 > root.key){
-            System.out.println("Right"+root.key);
+    private Node lcaRecursion(Node root, int v1, int v2) {
+        if (v1 > root.key && v2 > root.key) {
             return lcaRecursion(root.right, v1, v2);
-        } else if (v1 < root.key && v2 < root.key){
-            System.out.println("Left"+root.key);
+        } else if (v1 < root.key && v2 < root.key) {
             return lcaRecursion(root.left, v1, v2);
         }
         return root;
     }
 
-    private Node lca(Node root, int v1, int v2){
-        if(v1 == v2) return findNode(v1);
-        Stack<Node> pathToV1 = pathTo(root,v1);
-        Stack<Node> pathToV2 = pathTo(root,v2);
-        if(pathToV1 == null || pathToV2 == null) return null;
+    private Node lca(Node root, int v1, int v2) {
+        if (v1 == v2) return findNode(v1);
+        Stack<Node> pathToV1 = pathTo(root, v1);
+        Stack<Node> pathToV2 = pathTo(root, v2);
+        if (pathToV1 == null || pathToV2 == null) return null;
         Node curr = null;
-        while(!pathToV1.isEmpty() && !pathToV2.isEmpty()){
+        while (!pathToV1.isEmpty() && !pathToV2.isEmpty()) {
             Node one = pathToV1.pop();
             Node two = pathToV2.pop();
-            if(one.key == two.key) curr = one;
+            if (one.key == two.key) curr = one;
             else break;
         }
         return curr;
     }
 
     private Stack<Node> pathTo(Node root, int n) {
-        if(root == null) return null;
-        if(root.key == n){
+        if (root == null) return null;
+        if (root.key == n) {
             Stack<Node> stack = new Stack<>();
             stack.push(root);
             return stack;
         }
-        Stack<Node> stackLeft = pathTo(root.left,n);
-        Stack<Node> stackRight = pathTo(root.right,n);
-        if(stackLeft != null){
+        Stack<Node> stackLeft = pathTo(root.left, n);
+        Stack<Node> stackRight = pathTo(root.right, n);
+        if (stackLeft != null) {
             stackLeft.push(root);
             return stackLeft;
         }
-        if(stackRight != null){
+        if (stackRight != null) {
             stackRight.push(root);
             return stackRight;
         }
         return null;
+    }
+
+    private boolean isSumFromRootToLeafExist(Node root, int sum) {
+        if (root == null) return sum == 0;
+        return isSumFromRootToLeafExist(root.left, sum - root.key) || isSumFromRootToLeafExist(root.right, sum - root.key);
+    }
+
+    void printPaths(Node node)
+    {
+        int path[] = new int[1000];
+        printPathsRecur(node, path, 0);
+    }
+
+    void printPathsRecur(Node node, int path[], int pathLen)
+    {
+        if (node == null) return;
+        path[pathLen] = node.key;
+        pathLen++;
+        if (node.left == null && node.right == null)
+            printArray(path, pathLen);
+        else
+        {
+            printPathsRecur(node.left, path, pathLen);
+            printPathsRecur(node.right, path, pathLen);
+        }
+    }
+
+    private void printAllPathFromRoot(Node root,List<StringBuilder> path, StringBuilder sb){
+        if (root == null) return;
+        sb.append(root.key);
+        sb.append(",");
+        if(root.left == null && root.right == null){
+            sb.append("---");
+            path.add(sb);
+        }else {
+            printAllPathFromRoot(root.left, path, sb);
+            printAllPathFromRoot(root.right, path, sb);
+        }
+    }
+
+    void printArray(int ints[], int len)
+    {
+        int i;
+        for (i = 0; i < len; i++)
+        {
+            System.out.print(ints[i] + " ");
+        }
+        System.out.println("");
     }
 
 
@@ -178,7 +226,13 @@ public class BinaryTree {
         binaryTree.insert(5, "Carme");
         binaryTree.insert(12, "Jamie");
         binaryTree.display();
-        System.out.println(binaryTree.lcaRecursion(binaryTree.root,12,19).key);
-        System.out.println(binaryTree.lca(binaryTree.root,12,19).key);
+//        System.out.println(binaryTree.lcaRecursion(binaryTree.root, 12, 19).key);
+//        System.out.println(binaryTree.lca(binaryTree.root, 12, 19).key);
+//        System.out.println(binaryTree.isSumFromRootToLeafExist(binaryTree.root, 31));
+
+        List<StringBuilder> path = new ArrayList<>();
+        StringBuilder sb1 = new StringBuilder();
+        binaryTree.printAllPathFromRoot(binaryTree.root, path, sb1);
+        binaryTree.printPaths(binaryTree.root);
     }
 }

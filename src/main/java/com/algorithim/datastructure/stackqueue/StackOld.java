@@ -1,8 +1,6 @@
-package com.algorithim.datastructure.basic;
+package com.algorithim.datastructure.stackqueue;
 
-public class QueueOld {
-
-
+public class StackOld {
     private final class Node {
         private final int data;
         private Node next;
@@ -22,14 +20,14 @@ public class QueueOld {
             head = newNode;
             tail = newNode;
         } else {
-            tail.next = newNode;
-            tail = newNode;
+            newNode.next = head;
+            head = newNode;
         }
     }
 
     public int pop(){
         // If no item is on stack
-        if(head == null){
+        if(head == null) {
             System.out.println("Empty");
             return -1;
         }
@@ -45,7 +43,7 @@ public class QueueOld {
     }
 
     public boolean contains(int data){
-        if(head == null){
+        if(head == null) {
             System.out.println("Empty");
             return false;
         }
@@ -56,13 +54,11 @@ public class QueueOld {
             }
             current = current.next;
         }
-
         if(current.next == null){
             return current.data == data;
         }
 
+
         return false;
     }
-
-
 }

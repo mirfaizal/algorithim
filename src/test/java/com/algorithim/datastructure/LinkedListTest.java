@@ -76,4 +76,17 @@ public class LinkedListTest {
         //linkedListTwo.reverse();
         System.out.println(linkedList.sumLinkedListBruteForce(linkedList.getFirstNode(),linkedListTwo.getFirstNode()));
     }
+
+    @Test
+    public void testHasCycle(){
+        linkedList = new LinkedList();
+        linkedList.addFront(1);
+        linkedList.addFront(2);
+        linkedList.addFront(3);
+        linkedList.addFront(4);
+        linkedList.addFront(1);
+        linkedList.addFront(2);
+        linkedList.addFront(3);
+        Assert.assertEquals(2,linkedList.kthToLast());
+    }
 }

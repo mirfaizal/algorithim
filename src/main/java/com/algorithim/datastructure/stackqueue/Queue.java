@@ -1,6 +1,13 @@
-package com.algorithim.datastructure.basic;
+package com.algorithim.datastructure.stackqueue;
 
 public class Queue<T> {
+    private final class Node<T> {
+        private final T data;
+        private Node next;
+        public Node(T data) {
+            this.data = data;
+        }
+    }
     private Node<T> head , tail;
     private boolean isEmpty(){ return head == null && tail == null;}
     private void add(T data){

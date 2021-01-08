@@ -1,6 +1,6 @@
 package com.algorithim.datastructure;
 
-import com.algorithim.datastructure.basic.QueueOld;
+import com.algorithim.datastructure.stackqueue.QueueOld;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
