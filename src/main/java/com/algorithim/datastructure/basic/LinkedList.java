@@ -27,11 +27,11 @@ public class LinkedList {
     // O(n) Linear Time
     public void addBack(int data) {
         Node newNode = new Node(data);
-        if(head == null){
+        if (head == null) {
             throw new IllegalArgumentException("Empty List");
         }
         Node current = head;
-        while(current.next !=null){
+        while (current.next != null) {
             current = current.next;
         }
         current.next = newNode;
@@ -63,18 +63,18 @@ public class LinkedList {
         return current.data;
     }
 
-    public void delete(int data){
-        if(head == null){
+    public void delete(int data) {
+        if (head == null) {
             throw new IllegalArgumentException("Empty List");
         }
         // Node has only head O(1) constant time
-        if(head.data == data){
+        if (head.data == data) {
             head = head.next;
         }
         // Node has many O(n) Linear Time
         Node current = head;
-        while(current.next != null){
-            if(current.next.data == data){
+        while (current.next != null) {
+            if (current.next.data == data) {
                 // if match move the pointer to next
                 current.next = current.next.next;
                 break;
@@ -84,10 +84,10 @@ public class LinkedList {
     }
 
     public Node insertNodeAtPosition(int data, int position) {
-        Node newNode = new  Node(data);
+        Node newNode = new Node(data);
         Node current = head, previous = null;
         int i = 0;
-        while(current.next != null && i < position) {
+        while (current.next != null && i < position) {
             previous = current;
             current = current.next;
             i++;
@@ -100,10 +100,10 @@ public class LinkedList {
     public boolean hasCycle() {
         Node current = head;
         Node next = head;
-        while(next != null && next.next != null){
+        while (next != null && next.next != null) {
             current = current.next;
             next = next.next.next;
-            if(current == next){
+            if (current == next) {
                 return true;
             }
         }
@@ -111,19 +111,19 @@ public class LinkedList {
     }
 
     // O(n^2) times
-    public void removeDuplicate(){
-        if(head == null){
+    public void removeDuplicate() {
+        if (head == null) {
             throw new IllegalArgumentException("Empty List");
         }
-        if(head.next == null){
+        if (head.next == null) {
             // List has one item
             return;
         }
         Node current = head;
         Node currentToSearch = head.next;
-        while(current.next !=null){
-            while(currentToSearch !=null && currentToSearch.next !=null){
-                if(current.data == currentToSearch.next.data){
+        while (current.next != null) {
+            while (currentToSearch != null && currentToSearch.next != null) {
+                if (current.data == currentToSearch.next.data) {
                     currentToSearch.next = currentToSearch.next.next;
                     System.gc();
                 }
@@ -134,17 +134,17 @@ public class LinkedList {
         }
     }
 
-    public int kthToLast(){
-        if(head == null){
+    public int kthToLast() {
+        if (head == null) {
             throw new IllegalArgumentException("Empty List");
         }
         // One item
-        if(head.next == null){
+        if (head.next == null) {
             return head.data;
         }
 
         Node current = head, currentNext = head.next;
-        while(currentNext != null && currentNext.next != null ){
+        while (currentNext != null && currentNext.next != null) {
             currentNext = currentNext.next;
             current = current.next;
         }
@@ -152,15 +152,15 @@ public class LinkedList {
 
     }
 
-    public void reverse(){
-        if(head == null){
+    public void reverse() {
+        if (head == null) {
             throw new IllegalArgumentException("Empty List");
         }
-        if(head.next == null){
+        if (head.next == null) {
             return;
         }
-        Node current = head, next , previous = null;
-        while(current != null){
+        Node current = head, next, previous = null;
+        while (current != null) {
             next = current.next;
             current.next = previous;
             previous = current;
@@ -169,15 +169,15 @@ public class LinkedList {
         head = previous;
     }
 
-    public char [] sumLinkedListBruteForce(Node listOne, Node listTwo){
+    public char[] sumLinkedListBruteForce(Node listOne, Node listTwo) {
         StringBuilder numberOne = new StringBuilder();
-        while(listOne != null){
+        while (listOne != null) {
             numberOne.append(listOne.data);
             listOne = listOne.next;
         }
         //numberOne.reverse();
         StringBuilder numberTwo = new StringBuilder();
-        while(listTwo != null){
+        while (listTwo != null) {
             numberTwo.append(listTwo.data);
             listTwo = listTwo.next;
         }
@@ -191,40 +191,98 @@ public class LinkedList {
         return sb.toString().toCharArray();
     }
 
-    public void display(){
-        if(head == null){
+    public void display() {
+        if (head == null) {
             throw new IllegalArgumentException("Empty List");
         }
-        if(head.next == null){
+        if (head.next == null) {
             System.out.println(head.data);
             return;
         }
         Node current = head;
-        while(current.next !=null){
+        while (current.next != null) {
             System.out.print(current.data);
             current = current.next;
         }
-        if(current.next == null){
+        if (current.next == null) {
             System.out.print(current.data);
         }
     }
 
-    public int size(){
-        if(head == null){
+    public int size() {
+        if (head == null) {
             return 0;
         }
-        if(head.next == null){
+        if (head.next == null) {
             return 1;
         }
         int count = 0;
         Node current = head;
-        while(current.next !=null){
+        while (current.next != null) {
             count++;
             current = current.next;
         }
-        if(current.next == null){
+        if (current.next == null) {
             count++;
         }
         return count;
+    }
+
+    public Node reverseInBetween(int m, int n) {
+        Node current = head;
+        Node previous = null;
+        int index = 1;
+        // Move the pointer to mth position
+        while(current != null && index < m){
+            previous = current;
+            current = current.next;
+            index++;
+        }
+        Node mthCurrent = current;
+        Node nthCurrent = mthCurrent;
+        // Move the pointer to nth position
+        while(nthCurrent != null && index < n){
+            nthCurrent = nthCurrent.next;
+            index++;
+        }
+        Node mthPrevious = nthCurrent.next, mthNext;
+        index = m;
+        while(mthCurrent !=null && index <= n){
+            mthNext = mthCurrent.next;
+            mthCurrent.next = mthPrevious;
+            mthPrevious = mthCurrent;
+            mthCurrent = mthNext;
+            index++;
+        }
+        // Point previous pointer to mthPrevious
+        if(previous != null)  previous.next = mthPrevious;
+        else head = mthPrevious;
+        return head;
+    }
+
+    public Node reverseOperationEvenNumbers(){
+        Node current = head;
+        Node headT = head;
+        Node first = null;
+        while(current!=null) {
+            Node previous = null, next = null;
+            first = current;
+            while (current != null && current.data % 2 != 0) {
+                current = current.next;
+            }
+            while (current != null && current.data % 2 == 0) {
+                next = current.next;
+                current.next = previous;
+                previous = current;
+                current = next;
+            }
+            first.next = previous;
+            Node newHead = first;
+            while(newHead!=null && newHead.next !=null){
+                newHead = newHead.next;
+            }
+            newHead.next = current;
+        }
+        return head;
     }
 }

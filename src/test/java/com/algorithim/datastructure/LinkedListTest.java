@@ -89,4 +89,28 @@ public class LinkedListTest {
         linkedList.addFront(3);
         Assert.assertEquals(2,linkedList.kthToLast());
     }
+
+
+    @Test
+    public void testReverseInBetween(){
+        linkedList = new LinkedList();
+        // 1->2->3->4->5
+        linkedList.addFront(5);
+        linkedList.addFront(3);
+
+        linkedList.reverseInBetween(1,2);
+    }
+
+    @Test
+    public void testReverseOperationEvenNumbers(){
+        linkedList = new LinkedList();
+        linkedList.addFront(16);
+        linkedList.addFront(12);
+        linkedList.addFront(9);
+        linkedList.addFront(8);
+        linkedList.addFront(2);
+        linkedList.addFront(1);
+
+        linkedList.reverseOperationEvenNumbers();
+    }
 }
