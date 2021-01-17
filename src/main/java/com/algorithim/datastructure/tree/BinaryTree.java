@@ -80,7 +80,7 @@ public class BinaryTree {
                 Node findMinRight = findMinNode(node.right);
                 node.key = findMinRight.key;
                 node.value = findMinRight.value;
-                node.right = delete(node.right, key);
+                node.right = delete(node.right, node.key);
             }
         }
         return node;
@@ -167,47 +167,47 @@ public class BinaryTree {
         return isSumFromRootToLeafExist(root.left, sum - root.key) || isSumFromRootToLeafExist(root.right, sum - root.key);
     }
 
-    void printPaths(Node node)
-    {
+    List<List<Integer>> printPaths(Node node) {
         int path[] = new int[1000];
-        printPathsRecur(node, path, 0);
+        List<List<Integer>> list = new ArrayList<>();
+        printPathsRecur(node, path, 0, list);
+        return list;
     }
 
-    void printPathsRecur(Node node, int path[], int pathLen)
-    {
+    void printPathsRecur(Node node, int path[], int pathLen, List<List<Integer>> list) {
         if (node == null) return;
         path[pathLen] = node.key;
         pathLen++;
         if (node.left == null && node.right == null)
-            printArray(path, pathLen);
-        else
-        {
-            printPathsRecur(node.left, path, pathLen);
-            printPathsRecur(node.right, path, pathLen);
+            addArray(path, pathLen, list);
+        else {
+            printPathsRecur(node.left, path, pathLen, list);
+            printPathsRecur(node.right, path, pathLen, list);
         }
     }
 
-    private void printAllPathFromRoot(Node root,List<StringBuilder> path, StringBuilder sb){
+    private void printAllPathFromRoot(Node root, List<StringBuilder> path, StringBuilder sb) {
         if (root == null) return;
         sb.append(root.key);
         sb.append(",");
-        if(root.left == null && root.right == null){
+        if (root.left == null && root.right == null) {
             sb.append("---");
             path.add(sb);
-        }else {
+        } else {
             printAllPathFromRoot(root.left, path, sb);
             printAllPathFromRoot(root.right, path, sb);
         }
     }
 
-    void printArray(int ints[], int len)
-    {
+    void addArray(int ints[], int len, List<List<Integer>> list) {
+        List<Integer> newList = new ArrayList<>();
         int i;
-        for (i = 0; i < len; i++)
-        {
+        for (i = 0; i < len; i++) {
             System.out.print(ints[i] + " ");
+            newList.add(ints[i]);
         }
         System.out.println("");
+        list.add(newList);
     }
 
 
@@ -233,6 +233,8 @@ public class BinaryTree {
         List<StringBuilder> path = new ArrayList<>();
         StringBuilder sb1 = new StringBuilder();
         binaryTree.printAllPathFromRoot(binaryTree.root, path, sb1);
-        binaryTree.printPaths(binaryTree.root);
+        List<List<Integer>> list = binaryTree.printPaths(binaryTree.root);
+        binaryTree.delete(11);
+        System.out.println();
     }
 }

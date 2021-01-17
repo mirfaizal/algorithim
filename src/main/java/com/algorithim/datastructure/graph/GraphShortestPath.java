@@ -52,7 +52,7 @@ public class GraphShortestPath {
             }
         }
         List<Node> results = new ArrayList<>();
-        if(parentChildMap.get(b) == null) return results;
+        if(parentChildMap.get(b) == null) return new ArrayList<>();
         Node current = b;
         while (current != null){
             System.out.print(current.data+" ");
