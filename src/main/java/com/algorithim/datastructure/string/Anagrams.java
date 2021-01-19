@@ -9,9 +9,8 @@ public class Anagrams {
         Anagrams anagrams = new Anagrams();
         System.out.println(anagrams.anagrams("railsafety", "fairytales")); // should return true
         System.out.println(anagrams.anagrams("hello", "solleh")); // should return false
-
         System.out.println(anagrams.isAnagram("railsafety", "fairytales")); // should return true
-        System.out.println(anagrams.isAnagram("hello", "solleh")); // should return false
+        System.out.println(anagrams.isAnagram("hellos", "solleh")); // should return false
     }
 
     private boolean anagrams(String stringOne, String stringTwo) {
@@ -60,10 +59,13 @@ public class Anagrams {
     // O(n)
     public boolean isAnagram(String stringOne, String stringTwo ){
         if(stringOne.length() != stringTwo.length()) return false;
-        int [] counts = new int[128];
+        int [] counts = new int[26];
         for(int i=0;i<stringOne.length();i++){
             counts[stringOne.charAt(i) - 'a']++;
             counts[stringTwo.charAt(i) - 'a']--;
+        }
+        for(int i=0;i<counts.length;i++){
+            if(counts[i] != 0) return false;
         }
         return true;
     }

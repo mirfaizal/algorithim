@@ -98,6 +98,6 @@ public class Trie {
         System.out.println(trie.search("cater"));
         System.out.println(trie.longestPrefixMatching("caterer"));
         System.out.println(trie.longestPrefixMatching("basemexy"));
-        System.out.println(trie.longestPrefixMatching("child"));
+        System.out.println(trie.longestPrefixMatching("children1"));
     }
 }
