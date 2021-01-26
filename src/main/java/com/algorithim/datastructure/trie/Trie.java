@@ -1,10 +1,15 @@
 package com.algorithim.datastructure.trie;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Stack;
 
 public class Trie {
     class Node {
+        char character;
         Map<Character, Node> children;
         boolean endOfWord;
         Node(){
@@ -22,6 +27,7 @@ public class Trie {
             Node node = current.children.get(word.charAt(i));
             if(node == null){
                 node = new Node();
+                current.character = word.charAt(i);
                 current.children.put(word.charAt(i), node);
             }
             current = node;
@@ -29,17 +35,7 @@ public class Trie {
         current.endOfWord = true;
     }
 
-    private boolean search(String word) {
-        Node current = root;
-        for(int i=0;i<word.length();i++){
-            Node node = current.children.get(word.charAt(i));
-            if(node == null){
-                return false;
-            }
-            current = node;
-        }
-        return current.endOfWord;
-    }
+
 
     private void delete(String word){
         delete(root,word,0);
@@ -86,18 +82,77 @@ public class Trie {
 
     public static void main(String[] args) {
         Trie trie = new Trie();
-        trie.insert("are");
-        trie.insert("area");
-        trie.insert("base");
-        trie.insert("cat");
-        trie.insert("cater");
-        trie.insert("children");
-        trie.insert("basement");
-        System.out.println(trie.search("cater"));
-        trie.delete("cater");
-        System.out.println(trie.search("cater"));
-        System.out.println(trie.longestPrefixMatching("caterer"));
-        System.out.println(trie.longestPrefixMatching("basemexy"));
-        System.out.println(trie.longestPrefixMatching("children1"));
+        String [] arr = {"mobile","mouse","moneypot","monitor","mousepad"};
+        Arrays.sort(arr);
+        for (int i=0;i<arr.length;i++){
+            trie.insert(arr[i]);
+        }
+        trie.dfs('m');
+        String searchWord = "mouse";
+        List<List<String>>  suggestedProduct = trie.suggestedProduct(searchWord);
+        for(List<String> inner : suggestedProduct){
+            for(String string : inner){
+                System.out.print(string+" ");
+            }
+            System.out.println();
+        }
+
     }
+
+    private boolean search(String word) {
+        Node current = root;
+        for(int i=0;i<word.length();i++){
+            Node node = current.children.get(word.charAt(i));
+            if(node == null){
+                return false;
+            }
+            current = node;
+        }
+        return current.endOfWord;
+    }
+
+    private List<List<String>> suggestedProduct(String searchWord) {
+        List<List<String>> output = new ArrayList<>();
+        Node current = null;
+
+
+
+
+        for(int i=0;i<searchWord.length();i++){
+            current = root;
+            String wordToSearch = searchWord.substring(0,i+1);
+            for(char character: wordToSearch.toCharArray()){
+                Node node = current.children.get(character);
+                if(node == null) return new ArrayList<>();
+                System.out.print(current.character+" ");
+                current = node;
+            }
+        }
+
+
+        return new ArrayList<>();
+    }
+
+
+    private List<String> dfs(char character){
+        List<String> inner = new ArrayList<>();
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while(!stack.isEmpty()){
+            Node node = stack.pop();
+            if (node == null) break;
+            if (!inner.contains(node.character)) {
+                inner.add(String.valueOf(node.character));
+                for(Character kids : node.children.keySet()){
+                    stack.push(node.children.get(kids));
+                }
+
+            }
+
+        }
+        return inner;
+    }
+
+
+
 }

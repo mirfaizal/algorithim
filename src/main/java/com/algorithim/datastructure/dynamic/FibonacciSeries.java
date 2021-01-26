@@ -47,7 +47,7 @@ public class FibonacciSeries {
 
     public int fibBottomUp(int n){
         Map<Integer,Integer> map = new HashMap<>();
-        Integer fib = 0;
+        Integer fib;
         for(int i=0;i<=n;i++){
             if(i <= 0) {
                 fib =  0;

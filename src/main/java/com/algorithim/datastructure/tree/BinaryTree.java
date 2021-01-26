@@ -211,6 +211,10 @@ public class BinaryTree {
     }
 
 
+
+
+
+
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.insert(11, "Faizal");
@@ -236,5 +240,6 @@ public class BinaryTree {
         List<List<Integer>> list = binaryTree.printPaths(binaryTree.root);
         binaryTree.delete(11);
         System.out.println();
+
     }
 }

@@ -27,10 +27,10 @@ public class Graph {
         Set<Integer> visited = new LinkedHashSet<>();
         Stack<Integer> stack = new Stack<>();
         stack.push(root);
+        visited.add(root);
         while(!stack.isEmpty()){
             int vertex = stack.pop();
             if(!visited.contains(vertex)) {
-                visited.add(vertex);
                 for (int edge : adjList[vertex]) {
                     //if(!stack.contains(edge))
                         stack.push(edge);
@@ -84,7 +84,7 @@ public class Graph {
         graph.addEdge(3,2);
         graph.addEdge(2,1);
         graph.addEdge(1,4);
-        //graph.addEdge(4,2);
+        graph.addEdge(4,2);
         graph.display(graph.vertices, graph.adjList);
         graph.dfs(graph.adjList, 3).stream().forEach(e -> System.out.print(e.intValue()));
         System.out.println();
