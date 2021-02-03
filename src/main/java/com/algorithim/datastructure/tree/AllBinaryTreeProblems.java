@@ -104,7 +104,7 @@ public class AllBinaryTreeProblems {
 
     private Node delete(Node node, int key) {
         if(node == null){
-            return node;
+            return null;
         } else if(node.key < key){
             node.right = delete(node.right,key);
         } else if(node.key > key){
@@ -184,7 +184,8 @@ public class AllBinaryTreeProblems {
     }
 
     private boolean pts(Node root, int sum) {
-        if(root == null) return sum == 0;
+        if(root == null) return false;
+        if(root.left == null && root.right == null && sum - root.key == 0) return true;
         return pts(root.left, sum - root.key) || pts(root.right, sum - root.key);
     }
 
@@ -260,29 +261,49 @@ public class AllBinaryTreeProblems {
         return  levelOrderMap;
     }
 
+    List<Integer> checkBST(Node node, List<Integer> array){
+        if(node != null){
+            checkBST(node.left,array);
+            array.add(node.key);
+            checkBST(node.right,array);
+        }
+        return array;
+    }
+
+    boolean checkBST() {
+        List<Integer> array = new ArrayList<>();
+        checkBST(root, array);
+        int index = 1;
+        for(int i : array){
+            if(index == array.size()) break;
+            if(i > array.get(index++)) return false;
+        }
+        return true;
+    }
+
 
     public static void main(String[] args) {
         AllBinaryTreeProblems binaryTree = new AllBinaryTreeProblems();
-        binaryTree.insert(11, "Faizal");
+        binaryTree.insert(1, "Faizal");
         binaryTree.insert(2, "Claudia");
-        binaryTree.insert(14, "Jenne");
-        binaryTree.insert(4, "Marsha");
-        binaryTree.insert(6, "Daniel");
-        binaryTree.insert(18, "Anna");
-        binaryTree.insert(19, "Nora");
-        binaryTree.insert(8, "Ping Ping");
-        binaryTree.insert(1, "Kate");
-        binaryTree.insert(3, "Rachel");
-        binaryTree.insert(5, "Carme");
-        binaryTree.insert(12, "Jamie");
+//        binaryTree.insert(14, "Jenne");
+//        binaryTree.insert(4, "Marsha");
+//        binaryTree.insert(6, "Daniel");
+//        binaryTree.insert(18, "Anna");
+//        binaryTree.insert(19, "Nora");
+//        binaryTree.insert(8, "Ping Ping");
+//        binaryTree.insert(1, "Kate");
+//        binaryTree.insert(3, "Rachel");
+//        binaryTree.insert(5, "Carme");
+//        binaryTree.insert(12, "Jamie");
         binaryTree.print(Order.IN_ORDER);
-        System.out.println();
-        binaryTree.print(Order.PRE_ORDER);
-        System.out.println();
-        binaryTree.print(Order.POST_ORDER);
+//        System.out.println();
+//        binaryTree.print(Order.PRE_ORDER);
+//        System.out.println();
+//        binaryTree.print(Order.POST_ORDER);
 //        System.out.println(binaryTree.lowestCommonAncestor(5,8));
 //        System.out.println(binaryTree.lowestCommonAncestor(18,8));
-//        System.out.print(binaryTree.pathToSum(32));
+        System.out.print(binaryTree.pathToSum(3));
 //        binaryTree.leftView();
 //        System.out.println();
 //        System.out.println(binaryTree.depth());
@@ -300,11 +321,13 @@ public class AllBinaryTreeProblems {
 //        for(int i=0;i<rightView.size();i++){
 //            System.out.print(rightView.get(i)+" ");
 //        }
+//
+//        Map<Integer, List<Integer>> map = binaryTree.levelOrderTraversal(binaryTree.root);
+//        for(Map.Entry<Integer, List<Integer>> entry : map.entrySet()){
+//            System.out.print(entry.getValue().get(entry.getValue().size() - 1)+" ");
+//        }
 
-        Map<Integer, List<Integer>> map = binaryTree.levelOrderTraversal(binaryTree.root);
-        for(Map.Entry<Integer, List<Integer>> entry : map.entrySet()){
-            System.out.print(entry.getValue().get(entry.getValue().size() - 1)+" ");
-        }
+        //System.out.println(binaryTree.checkBST());
 
     }
 
