@@ -4,9 +4,6 @@ import java.util.StringTokenizer;
 
 public class CapitalizedWordInString {
     public static void main(String[] args) {
-        StringTokenizer st = new StringTokenizer();
-        st.countTokens()
-        System.out.println("hell0".compareTo("hell0"));
         CapitalizedWordInString capitalizedWordInString = new CapitalizedWordInString();
         System.out.println(capitalizedWordInString.capitalizedWord("hello there how are you!"));
     }
