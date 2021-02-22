@@ -1,7 +1,18 @@
 package com.algorithim.datastructure.array;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
 public class ZeroMatrix {
+
     public static void main(String[] args) {
+        Arrays.sort(new int[]{1,2,3});
+        Collections.sort(new ArrayList<>(),Collections.reverseOrder());
+        Set<Integer> set = new HashSet<>();
+        set.toArray();
         int [][] array = {{1,0,3,4},
                           {5,6,7,8},
                           {9,10,0,12}};

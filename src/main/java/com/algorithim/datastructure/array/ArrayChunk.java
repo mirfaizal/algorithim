@@ -3,7 +3,7 @@ package com.algorithim.datastructure.array;
 public class ArrayChunk {
     public static void main(String[] args) {
         ArrayChunk arrayChunk = new ArrayChunk();
-        arrayChunk.chunk(new int [] {1,2,3,4,5,6,7,8,9,10,11,12}, 3);
+        arrayChunk.chunk(new int [] {1,2,3,4,5,6,7,8,9,10,11,12,13}, 3);
     }
 
     private int [][] chunk(int[] array, int chunkSize) {
