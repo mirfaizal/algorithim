@@ -2,7 +2,7 @@ package com.algorithim.datastructure.sorting;
 
 public class QuickSort {
     public static void main(String[] args) {
-        int[] array = new int[]{5,8,1,3,7,9,2};
+        int[] array = new int[]{10,9,8,5,6,3,1,2};
         quickSort(array, 0, array.length - 1);
         for (int i = 0; i < array.length; i++) {
             System.out.print(array[i] + " ");
