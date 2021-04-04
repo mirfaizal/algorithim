@@ -1,6 +1,8 @@
 package com.algorithim.datastructure.graph;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +30,7 @@ public class AllGraph {
         queue.add(start);
         visited.add(start);
         while(!queue.isEmpty()){
-            int item = queue.poll();
+            int item = queue.remove();
             List<Integer> kids = adjVertices[item];
             for(Integer kid : kids){
                 if(!visited.contains(kid)){
@@ -42,20 +44,31 @@ public class AllGraph {
 
     private List<Integer> dfs(int start){
         List<Integer> visited = new ArrayList<>();
-        Stack<Integer> stack = new Stack<>();
+        Deque<Integer> stack = new ArrayDeque<>();
         stack.push(start);
         while(!stack.isEmpty()){
             int item = stack.pop();
-            if(!visited.contains(item)) {
-                visited.add(item);
-                List<Integer> kids = adjVertices[item];
-                for (Integer kid : kids) {
-                    stack.push(kid);
+            List<Integer> kids = adjVertices[item];
+            for(Integer kid : kids){
+                if(!visited.contains(kid)){
+                    visited.add(kid);
+                    stack.add(kid);
                 }
             }
         }
         return visited;
     }
+    static List<Integer> visitedRecursive = new ArrayList<>();
+    private void dfs_recursive(int start){
+        for(Integer kid : adjVertices[start]){
+            if(!visitedRecursive.contains(kid)){
+                visitedRecursive.add(kid);
+                dfs_recursive(kid);
+            }
+        }
+    }
+
+
 
     private List<Integer> shortestPath(int source, int destination) {
         Map<Integer,Integer> parentChildMap = new HashMap<>();
@@ -112,8 +125,11 @@ public class AllGraph {
 //        path.stream().forEach(item -> System.out.print(item+" "));
 
         List<Integer> path = graph.dfs(0);
-        path.stream().forEach(item -> System.out.print(item+" "));
 
+        path.stream().forEach(item -> System.out.print(item+" "));
+        System.out.println();
+        graph.dfs_recursive(0);
+        visitedRecursive.stream().forEach(item -> System.out.print(item+" "));
     }
 
 

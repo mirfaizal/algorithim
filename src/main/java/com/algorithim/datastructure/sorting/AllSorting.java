@@ -107,13 +107,14 @@ public class AllSorting {
 
     private static void quickSort(int[] array, int left, int right) {
         if (left < right) {
-            int partition = partitionI(array, left, right);
+            int partition = partition(array, left, right);
+            System.out.println(partition);
             quickSort(array, left, partition);
             quickSort(array, partition + 1, right);
         }
     }
 
-    private static int partitionI(int[] array, int left, int right) {
+    private static int partition(int[] array, int left, int right) {
         int pivot = array[left];
         int i = left, j = right;
         while (i < j) {
@@ -128,24 +129,6 @@ public class AllSorting {
         }
         swap(array, left, j);
         return j;
-    }
-
-    private static int partition(int[] array, int left, int right) {
-        int pivot = array[left];
-        while (left <= right) {
-            while (pivot > array[left]) {
-                left++;
-            }
-            while (pivot < array[right]) {
-                right--;
-            }
-            if (left <= right) {
-                swap(array, left, right);
-                left++;
-                right--;
-            }
-        }
-        return left;
     }
 
     private static void swap(int[] array, int i, int j) {

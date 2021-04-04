@@ -20,7 +20,7 @@ public class BinaryMaxHeap {
         array[indexOne] = array[indexTwo];
         array[indexTwo] = temp;
     }
-    private void ensureCapacity(){
+    private void ensureCapacity() {
         if(size == capacity){
             array = Arrays.copyOf(array, capacity * 2);
 //            int newArray [] = new int[capacity * 2];

@@ -10,6 +10,7 @@ import java.util.Stack;
 public class Graph {
     int vertices;
     List<Integer> [] adjList;
+    boolean [] array = new boolean[vertices];
 
     Graph(int vertices){
         this.vertices = vertices;

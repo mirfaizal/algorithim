@@ -1,15 +1,17 @@
 package com.algorithim.datastructure.tree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Stack;
 
 public class AllBinaryTreeProblems {
 
-    final class Node {
+    static final class Node {
         Node left , right;
         int key;
         String value;
@@ -22,6 +24,113 @@ public class AllBinaryTreeProblems {
         PRE_ORDER, IN_ORDER, POST_ORDER, LEVEL_ORDER, VERTICAL_ORDER
     }
     private Node root;
+
+    private static List<Integer> list = new ArrayList<>();
+
+    public static String serialize(Node root) {
+        if(root == null) return null;
+        StringBuilder sb = new StringBuilder();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for(int i=0;i<size;i++){
+                Node node = queue.remove();
+                if(node == null) {sb.append("x,");continue;}
+                sb.append(node.key+",");
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+        }
+        return sb.toString();
+    }
+
+    public static Node deserialize(String data) {
+        if(data == null || data.length() == 0) return null;
+        String [] chars = data.split(",");
+        int index = 0;
+        Node root = new Node(Integer.valueOf(chars[index]), chars[index++]);
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty() && index < chars.length){
+            Node node = queue.remove();
+            if(!chars[index].equals("x")){
+                Node left = new Node(Integer.valueOf(chars[index]), chars[index]);
+                node.left = left;
+                queue.add(left);
+            }
+            index++;
+            if(!chars[index].equals("x")){
+                Node right = new Node(Integer.valueOf(chars[index]), chars[index]);
+                node.right = right;
+                queue.add(right);
+            }
+            index++;
+        }
+        return root;
+    }
+
+    private static void treeIterator(Node node){
+        if(node == null) return;
+        treeIterator(node.left);
+        list.add(node.key);
+        treeIterator(node.right);
+    }
+
+
+
+    private static Node merge(Node t1, Node t2){
+        if(t1 == null && t2 == null) return null;
+        if(t1 == null) return t2;
+        if(t2 == null) return t1;
+        Queue<Node> queueOne = new LinkedList<>();
+        queueOne.add(t1);
+        Queue<Node> queueTwo = new LinkedList<>();
+        queueTwo.add(t2);
+        while(!queueOne.isEmpty() || !queueTwo.isEmpty()) {
+            List<Integer> innerOne = new ArrayList<>();
+            List<Integer> innerTwo = new ArrayList<>();
+            if(!queueOne.isEmpty()){
+                int size = queueOne.size();
+                for(int i=0;i<size;i++){
+                    Node node = queueOne.remove();
+                    innerOne.add(node.key);
+                    if(node.left != null) queueOne.add(node.left);
+                    if(node.right != null) queueOne.add(node.right);
+                }
+            }
+            if(!queueTwo.isEmpty()){
+                int size = queueTwo.size();
+                for(int i=0;i<size;i++){
+                    Node node = queueTwo.remove();
+                    innerTwo.add(node.key);
+                    if(node.left != null) queueTwo.add(node.left);
+                    if(node.right != null) queueTwo.add(node.right);
+                }
+            }
+
+        }
+
+        return null;
+    }
+
+    private static Node deepCopy(Node node){
+        if(node == null) return null;
+        Node deep = new Node(node.key,node.value);
+        deep.left = deepCopy(node.left);
+        deep.right = deepCopy(node.right);
+        return deep;
+    }
+
+    private static Node mergeIterative(Node t1, Node t2){
+        if(t1 == null && t2 == null) return null;
+        if(t1 == null) return t2;
+        if(t2 == null) return t1;
+        Node finalNode = new Node(t1.key, String.valueOf(t1.key + t2.key));
+        finalNode.left = merge(t1.left,t2.left);
+        finalNode.right = merge(t1.right,t2.right);
+        return finalNode;
+    }
 
     private int depth(){
         return depth(root);
@@ -283,9 +392,47 @@ public class AllBinaryTreeProblems {
 
 
     public static void main(String[] args) {
+
+
+
+        Stack<List<Integer>> stack = new Stack<>();
+        stack.push(new ArrayList<>(Arrays.asList(1,2,3)));
+        stack.push(new ArrayList<>(Arrays.asList(4,5)));
+        stack.push(new ArrayList<>(Arrays.asList(6)));
+        List<List<Integer>> res = new ArrayList<>();
+
+
+        while(!stack.isEmpty()){
+            res.add(stack.pop());
+        }
+
+
+        AllBinaryTreeProblems left = new AllBinaryTreeProblems();
+        left.insert(1, "Faizal");
+        left.insert(2, "Claudia");
+
+        AllBinaryTreeProblems right = new AllBinaryTreeProblems();
+        right.insert(10, "Faizal");
+        right.insert(2, "Claudia");
+        right.insert(1, "Love");
+        right.insert(3, "Sami");
+        right.insert(13, "Far");
+        right.insert(14, "Mir");
+
+        String data = serialize(right.root);
+
+        String [] chars = data.split(",");
+        deserialize(data);
+        Node root = merge(left.root,right.root);
+
+
         AllBinaryTreeProblems binaryTree = new AllBinaryTreeProblems();
         binaryTree.insert(1, "Faizal");
         binaryTree.insert(2, "Claudia");
+
+
+
+
 //        binaryTree.insert(14, "Jenne");
 //        binaryTree.insert(4, "Marsha");
 //        binaryTree.insert(6, "Daniel");
