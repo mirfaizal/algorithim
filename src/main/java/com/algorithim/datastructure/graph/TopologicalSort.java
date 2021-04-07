@@ -30,7 +30,7 @@ public class TopologicalSort {
 
     private void addEdge(int source, int destination) {
         adjList[source].add(destination);
-        //adjList[destination].add(source);
+        adjList[destination].add(source);
         allVertices.add(source);
         allVertices.add(destination);
     }
@@ -63,13 +63,10 @@ public class TopologicalSort {
 
     public static void main(String args[]) {
         TopologicalSort graph = new TopologicalSort(12);
-        graph.addEdge(1, 3);
-        graph.addEdge(1, 2);
-        graph.addEdge(3, 4);
-        graph.addEdge(5, 6);
-        graph.addEdge(6, 3);
-        graph.addEdge(3, 8);
-        graph.addEdge(8, 11);
+        graph.addEdge(1, 0);
+        graph.addEdge(2, 0);
+        graph.addEdge(3, 1);
+        graph.addEdge(3, 2);
 
         Stack<Integer> result = graph.topSort();
         while (!result.isEmpty()) {
