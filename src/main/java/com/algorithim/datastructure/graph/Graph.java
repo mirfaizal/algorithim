@@ -58,23 +58,6 @@ public class Graph {
         return visited;
     }
 
-    private boolean hasCycle(List<Integer> [] adjList, int root){
-        Set<Integer> visited = new LinkedHashSet<>();
-        Stack<Integer> stack = new Stack<>();
-        stack.push(root);
-        while(!stack.isEmpty()){
-            int vertex = stack.pop();
-            if(!visited.contains(vertex)){
-                visited.add(vertex);
-                for(int edge: adjList[vertex]){
-                    if(!stack.contains(edge)) stack.push(edge);
-                }
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }
 
 
     public static void main(String[] args) {
@@ -93,7 +76,6 @@ public class Graph {
         System.out.println();
         graph.bfs(graph.adjList, 3).stream().forEach(e -> System.out.print(e.intValue()));
         System.out.println();
-        System.out.println("hasCycle - "+graph.hasCycle(graph.adjList, 0));
     }
 
     private void display(int vertices, List<Integer> [] adjList) {

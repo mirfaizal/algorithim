@@ -45,18 +45,17 @@ public class TopologicalSort {
             if (visited.contains(vertex)) {
                 continue;
             }
-            topSortUtil(vertex, stack, visited);
+            dfs(vertex, stack, visited);
         }
         return stack;
     }
 
-    private void topSortUtil(Integer vertex, Stack<Integer> stack, Set<Integer> visited) {
+    private void dfs(Integer vertex, Stack<Integer> stack, Set<Integer> visited) {
         visited.add(vertex);
         for (Integer childVertex : adjList[vertex]) {
-            if (visited.contains(childVertex)) {
-                continue;
+            if (!visited.contains(childVertex)) {
+                dfs(childVertex, stack, visited);
             }
-            topSortUtil(childVertex, stack, visited);
         }
         stack.push(vertex);
     }

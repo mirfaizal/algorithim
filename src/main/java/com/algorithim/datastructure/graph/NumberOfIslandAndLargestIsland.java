@@ -69,13 +69,13 @@ class NumberOfIslandAndLargestIsland {
         Queue<Node> queue = new LinkedList<>();
         queue.add(new Node(row,col));
         visited[row][col] = true;
-        matrix[row][col] = 0;
+        //matrix[row][col] = 0;
         while (!queue.isEmpty()) {
             Node node = queue.poll();
             for (Node neighbour : getNeighbours(node.row,node.col)) {
                 if (!visited[neighbour.row][neighbour.col]) {
                     visited[neighbour.row][neighbour.col] = true;
-                    matrix[neighbour.row][neighbour.col] = 0;
+                    //matrix[neighbour.row][neighbour.col] = 0;
                     queue.add(neighbour);
                     count++;
                 }

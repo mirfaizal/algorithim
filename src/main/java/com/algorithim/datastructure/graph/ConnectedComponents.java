@@ -90,6 +90,7 @@ public class ConnectedComponents {
             int [] edges = edge[i];
             newGraph.addEdge(edges[0], edges[1]);
         }
+        String s = "";
         System.out.println(newGraph.connectedComponent());
     }
 }
