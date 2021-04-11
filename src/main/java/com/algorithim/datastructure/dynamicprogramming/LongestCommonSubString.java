@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.dynamic;
+package com.algorithim.datastructure.dynamicprogramming;
 
 public class LongestCommonSubString {
     public int longestCommonSubString(String text1, String text2) {

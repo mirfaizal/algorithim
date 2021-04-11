@@ -11,13 +11,6 @@ import java.util.Set;
 class GraphCycleDetection {
 
     public static void main(String arg[]) {
-//        7 6
-//        0 1
-//        0 2
-//        0 3
-//        3 4
-//        3 5
-//        6 6
         List<Integer> edge_start = new ArrayList<>();
         edge_start.add(0);
         edge_start.add(0);

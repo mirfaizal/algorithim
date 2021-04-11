@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.dynamic;
+package com.algorithim.datastructure.dynamicprogramming;
 
 /*
 
@@ -30,8 +30,6 @@ n: length of the first user's browsing history
 m: length of the second user's browsing history
 
 */
-
-import java.util.Arrays;
 
 public class FindContiguousHistory {
 

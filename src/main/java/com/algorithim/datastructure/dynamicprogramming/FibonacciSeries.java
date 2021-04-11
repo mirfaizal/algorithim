@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.dynamic;
+package com.algorithim.datastructure.dynamicprogramming;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,16 +12,20 @@ public class FibonacciSeries {
         return dateFormat.format(new Date());
     }
 
-
+    private static Map<Double, Double> map = new HashMap<Double, Double>();
     public static void main(String[] args) {
         FibonacciSeries fibonacciSeries = new FibonacciSeries();
+//        System.out.println(getDateTime());
+//        System.out.println(fibonacciSeries.fib(20));
         System.out.println(getDateTime());
-        System.out.println(fibonacciSeries.fib(20));
+
+        map.put(0D, 0D);
+        map.put(1D, 1D);
+
+        System.out.println(fibonacciSeries.fibBottomUp(1000));
         System.out.println(getDateTime());
-        System.out.println(fibonacciSeries.fibMemoize(20));
-        System.out.println(getDateTime());
-        System.out.println(fibonacciSeries.fibBottomUp(20));
-        System.out.println(getDateTime());
+//        System.out.println(fibonacciSeries.fibBottomUp(20));
+//        System.out.println(getDateTime());
     }
 
     public int fib(int n){
@@ -45,19 +49,14 @@ public class FibonacciSeries {
         return memo[n];
     }
 
-    public int fibBottomUp(int n){
-        Map<Integer,Integer> map = new HashMap<>();
-        Integer fib;
-        for(int i=0;i<=n;i++){
-            if(i <= 0) {
-                fib =  0;
-            }else if(i == 1) {
-                fib =  1;
-            } else {
-                fib = map.get(i-1) + map.get(i-2);
-            }
-            map.put(i,fib);
+
+
+    public double fibBottomUp(double n){
+        // Base Case
+        if(map.containsKey(n)){
+            return map.get(n);
         }
+        map.put(n,fibBottomUp(n-1) + fibBottomUp(n-2));
         return map.get(n);
     }
 
