@@ -60,12 +60,8 @@ public class ValidTree {
                     captured[neighbour] = connected;
                     parent.put(neighbour, node);
                     queue.add(neighbour);
-                } else {
-                    // Neighbor has been visited before
-                    if (parent.containsKey(neighbour) && parent.get(neighbour) != -1) {
-                        System.out.print(neighbour + " " + parent.get(neighbour));
-                        return true; // There must be a cycle.
-                    }
+                } else if (parent.get(neighbour) != node) {
+                    return true;
                 }
             }
         }
