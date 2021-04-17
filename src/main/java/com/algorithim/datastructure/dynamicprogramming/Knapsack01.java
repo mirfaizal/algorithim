@@ -26,7 +26,7 @@ public class Knapsack01 {
         return memo[n][w];
     }
     // Bottom Up
-    private static int bottomUpKnapsack(int[] weights, int[] profits, int knapsack, int length) {
+    private static int bottomUpKnapsack(int[] weights, int[] profits, int knapsack) {
         int[][] dp = new int[weights.length + 1][knapsack + 1];
         // Base Case or Initialize table
         for (int i = 0; i < weights.length + 1; i++) dp[i][0] = 0; // If weight is zero, then maximum profit is 0
@@ -45,9 +45,9 @@ public class Knapsack01 {
     }
     static int[][] memo;
     public static void main(String[] args) {
-        int[] profits = {1, 6, 10, 16};
-        int[] weights = {1, 2, 3, 5};
-        int knapsack = 7;
+        int[] profits = {10,20,30,-1000,1000};
+        int[] weights = {1, 2, 3, 4, 5};
+        int knapsack = 3;
 
         System.out.println(knapsack(weights, profits, knapsack, weights.length));
         System.out.println(knapsack(weights, profits, knapsack - 1, weights.length));
@@ -56,8 +56,8 @@ public class Knapsack01 {
         for (int i = 0; i < weights.length + 1; i++) for (int j = 0; j < knapsack + 1; j++) memo[i][j] = -1;
         System.out.println(memo_knapsack(weights, profits, knapsack, weights.length));
 
-        System.out.println(bottomUpKnapsack(weights, profits, knapsack, weights.length));
-        System.out.println(bottomUpKnapsack(weights, profits, knapsack - 1, weights.length));
+        System.out.println(bottomUpKnapsack(weights, profits, knapsack));
+        System.out.println(bottomUpKnapsack(weights, profits, knapsack - 1));
     }
 
 }

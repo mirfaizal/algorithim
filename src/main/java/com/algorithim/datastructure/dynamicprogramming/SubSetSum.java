@@ -2,7 +2,7 @@ package com.algorithim.datastructure.dynamicprogramming;
 
 public class SubSetSum {
     public static void main(String[] args) {
-        System.out.println(hasSubSetSum(new int[] {2,3,7,8,10}, 11));
+        System.out.println(hasSubSetSum(new int[] {2,3,5,4,10}, 12));
     }
     static boolean hasSubSetSum(int [] array, int sum){
         int n = array.length;
