@@ -1,8 +1,7 @@
-package com.rest;
+package com.restapi;
 
 import com.google.gson.Gson;
 
-import javax.script.ScriptEngineManager;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

@@ -1,26 +1,24 @@
-package com.rest;
+package com.restapi;
 
-import javax.net.ssl.HttpsURLConnection;
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptException;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URLEncoder;
-import java.net.URL;
+import javax.net.ssl.*;
+import javax.script.*;
+import java.io.*;
+import java.net.*;
+
 
 public class WinnersGoal {
     public static void main(String[] args) throws IOException {
         System.out.println(getWinnerTotalGoals("UEFA Champions League",2011));
+        System.out.println(getWinnerTotalGoals("English Premier League",2014));
+        System.out.println(getWinnerTotalGoals("English Premier League",2011));
+
     }
     private static int getWinnerTotalGoals(String competition, int year) throws IOException {
         String footballCompetitionURL = "https://jsonmock.hackerrank.com/api/football_competitions";
         String footballMatchesURL = "https://jsonmock.hackerrank.com/api/football_matches";
         String winnerURL = String.format(footballCompetitionURL + "?name=%s&year=%d", URLEncoder.encode(competition,"UTF-8"),year);
         String winnerTeamName = getWinnerTeamName(winnerURL);
+        System.out.println(winnerTeamName);
         String totalWinnerHomeGoalURL = String.format(footballMatchesURL + "?competition=%s&team1=%s&year=%d",URLEncoder.encode(competition,"UTF-8"), URLEncoder.encode(winnerTeamName, "UTF-8"),year);
         String totalWinnerAwayGoalURL = String.format(footballMatchesURL + "?competition=%s&team2=%s&year=%d",URLEncoder.encode(competition,"UTF-8"), URLEncoder.encode(winnerTeamName, "UTF-8"),year);
         int homeGoal = getTotalGoals(totalWinnerHomeGoalURL,"team1",1,0);

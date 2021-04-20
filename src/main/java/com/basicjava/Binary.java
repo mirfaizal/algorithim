@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.misc;
+package com.basicjava;
 
 import java.math.BigInteger;
 import java.util.Scanner;
@@ -14,16 +14,16 @@ public class Binary {
 //        for(int i=0;i<400000;i++){
 //            sb.append("1");
 //        }
-//        solution(sb.toString());
-        Scanner scan = new Scanner(System.in);
-        BigInteger n1 = scan.nextBigInteger();
-        BigInteger n2 = scan.nextBigInteger();
-        BigInteger n3 = n1;
-        BigInteger n4 = n1;
-        n3 = n3.add(n2);
-        n4 = n4.multiply(n2);
-        System.out.println(n3.toString());
-        System.out.println(n4.toString());
+        solution("400000");
+//        Scanner scan = new Scanner(System.in);
+//        BigInteger n1 = scan.nextBigInteger();
+//        BigInteger n2 = scan.nextBigInteger();
+//        BigInteger n3 = n1;
+//        BigInteger n4 = n1;
+//        n3 = n3.add(n2);
+//        n4 = n4.multiply(n2);
+//        System.out.println(n3);
+//        System.out.println(n4);
     }
 
     public static int solution(String S) {
@@ -37,7 +37,7 @@ public class Binary {
             //long number = 0;
             int index = 0;
             for(int i =S.length() - 1 ;i >= 0; i--){
-                long n = Integer.valueOf(String.valueOf(S.charAt(i)));
+                long n = Integer.parseInt(String.valueOf(S.charAt(i)));
                 BigInteger pow = new BigInteger(String.valueOf(2));
                 pow = pow.pow(index);
                 if(n == 1) number = number.add(pow);

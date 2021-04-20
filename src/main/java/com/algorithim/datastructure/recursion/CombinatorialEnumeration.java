@@ -16,18 +16,18 @@ public class CombinatorialEnumeration {
         PriorityQueue<Integer> queue = new PriorityQueue<>(5,(a,b)->(a-b));
 
 
-        Map<Integer, String> phoneMap = new HashMap<>();
-        phoneMap.put(1,"A");
-        System.out.println(phoneMap.get(Integer.valueOf(String.valueOf('1'))));
-        String c = "madam";
-        c.indexOf("ma");
-        char [] str = new char[] {'C'};
-        int j = str.length;
-        for(int i=0;i<str.length / 2;i++){
-            if(str[i] != str[j]) {
-
-            }
-        }
+//        Map<Integer, String> phoneMap = new HashMap<>();
+//        phoneMap.put(1,"A");
+//        System.out.println(phoneMap.get(Integer.valueOf(String.valueOf('1'))));
+//        String c = "madam";
+//        c.indexOf("ma");
+//        char [] str = new char[] {'C'};
+//        int j = str.length;
+//        for(int i=0;i<str.length / 2;i++){
+//            if(str[i] != str[j]) {
+//
+//            }
+//        }
 
 
         // binaryString(4);
@@ -42,7 +42,8 @@ public class CombinatorialEnumeration {
 //            System.out.println(list.size());
 //        }
 
-        get_distinct_subsets("aaaa");
+        List<String> list = get_distinct_subsets("1122");
+        for (String s : list) System.out.println(s);
     }
 
 
