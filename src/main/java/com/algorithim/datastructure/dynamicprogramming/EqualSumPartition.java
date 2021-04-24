@@ -2,7 +2,7 @@ package com.algorithim.datastructure.dynamicprogramming;
 
 public class EqualSumPartition {
     public static void main(String[] args) {
-        System.out.println(equalSubSetPartition(new int[] {1,5,11,5}));
+        System.out.println(equalSubSetPartition(new int[] {1,5,11,5,2}));
     }
     static boolean equalSubSetPartition(int [] array){
         int sum = 0;
@@ -13,9 +13,9 @@ public class EqualSumPartition {
         }
         if(sum % 2 != 0) return false;
         if(max > sum) {
-            return subSetSum_Using2Rows(array,max);
+            return subSetSum(array,max);
         }
-        else return subSetSum_Using2Rows(array,sum);
+        else return subSetSum(array,sum);
     }
     private static boolean subSetSum(int[] array, int w) {
         int n = array.length;
