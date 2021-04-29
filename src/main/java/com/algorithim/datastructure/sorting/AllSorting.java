@@ -1,5 +1,7 @@
 package com.algorithim.datastructure.sorting;
 
+import java.util.Random;
+
 public class AllSorting {
     public static void main(String[] args) {
         int[] unSortedArray = new int[]{10, 9, 8, 5, 6, 3, 1, 2};
@@ -13,7 +15,7 @@ public class AllSorting {
         sortedArray = mergeSort(unSortedArray);
         displayArray(sortedArray);
         unSortedArray = new int[]{10, 16, 8, 12, 15, 6, 3, 9, 5};
-        quickSort(unSortedArray, 0, unSortedArray.length - 1);
+        quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
         displayArray(unSortedArray);
 
     }
@@ -103,6 +105,30 @@ public class AllSorting {
             }
         }
         return result;
+    }
+
+    private static void quickSortLomutos(int[] array, int left, int right) {
+        if (left < right) {
+            int partition = quicksort_helper(array, left, right);
+            quickSortLomutos(array, left, partition);
+            quickSortLomutos(array, partition + 1, right);
+        }
+    }
+
+
+    private static int quicksort_helper(int[] array, int start, int end) {
+        Random rand = new Random();
+        int pivotIndex = rand.nextInt(end - start + 1) + start;
+        swap(array,pivotIndex,start);
+        int orange = start;
+        for(int green = start + 1; green < array.length; green++){
+            if(array[green] < array[start]){
+                orange++;
+                swap(array,green,orange);
+            }
+        }
+        swap(array,orange,start);
+        return orange;
     }
 
     private static void quickSort(int[] array, int left, int right) {
