@@ -49,19 +49,19 @@ public class AllBinaryTreeProblems {
         if(data == null || data.length() == 0) return null;
         String [] chars = data.split(",");
         int index = 0;
-        Node root = new Node(Integer.valueOf(chars[index]), chars[index++]);
+        Node root = new Node(Integer.parseInt(chars[index]), chars[index++]);
         Queue<Node> queue = new LinkedList<>();
         queue.add(root);
         while(!queue.isEmpty() && index < chars.length){
             Node node = queue.remove();
             if(!chars[index].equals("x")){
-                Node left = new Node(Integer.valueOf(chars[index]), chars[index]);
+                Node left = new Node(Integer.parseInt(chars[index]), chars[index]);
                 node.left = left;
                 queue.add(left);
             }
             index++;
             if(!chars[index].equals("x")){
-                Node right = new Node(Integer.valueOf(chars[index]), chars[index]);
+                Node right = new Node(Integer.parseInt(chars[index]), chars[index]);
                 node.right = right;
                 queue.add(right);
             }
@@ -108,7 +108,6 @@ public class AllBinaryTreeProblems {
                     if(node.right != null) queueTwo.add(node.right);
                 }
             }
-
         }
 
         return null;
@@ -194,10 +193,9 @@ public class AllBinaryTreeProblems {
             return root;
         }else if(root.key < key){
             return find(root.right, key);
-        }else if(root.key > key){
+        }else {
             return find(root.left, key);
         }
-        return root;
     }
 
     private void delete(int key){

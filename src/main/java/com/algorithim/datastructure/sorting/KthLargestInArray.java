@@ -45,3 +45,32 @@ public class KthLargestInArray {
         System.out.println();
     }
 }
+
+/*
+Return Top View of binary tree.
+      0
+      1
+     /   \
+    2      3
+  / \     /    \
+ 4   5,6   7
+      \
+       55
+        \
+         66
+          \
+            77
+
+                           -2,-1,0,1,2,3  return (-2,3)
+            return Top View[4, 2,1,3,7,77]
+                   bottom view
+                   column view[ [4],  [2], [1,5,6], [3,55], [7,66], [77]]  <==  simple
+                   return {min_column_index, max_column_index) <==
+
+   [1]
+  [2 3]
+[4,5,6,7]
+   [55]
+   [66]
+   [77]
+*/

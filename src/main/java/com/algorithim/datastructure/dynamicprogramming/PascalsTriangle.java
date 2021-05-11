@@ -26,7 +26,6 @@ public class PascalsTriangle {
             List<Integer> inner = new ArrayList<>();
             inner.add(dp[i][0]);
             for(int j = 1; j < i; j++) {
-                if(j > i) break;
                 dp[i][j] = dp[i-1][j] + dp[i-1][j-1];
                 inner.add(dp[i][j]);
             }

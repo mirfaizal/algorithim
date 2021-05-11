@@ -92,7 +92,7 @@ public class BSTIterator {
         return finalHeight;
     }
     static int dfsHelper(TreeNode root){
-        // Base Caser
+        // Base Case
         if(root == null) return 0;
         int heightL = dfsHelper(root.left);
         int heightR = dfsHelper(root.right);

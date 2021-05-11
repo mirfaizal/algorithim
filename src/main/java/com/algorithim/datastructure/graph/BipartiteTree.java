@@ -14,7 +14,7 @@ public class BipartiteTree {
     // Contains distance as value
     static Set<Integer> visited = new LinkedHashSet<>();
     static int [] parent;
-        static int [] distance;
+    static int [] distance;
     static int [] color;
     public static boolean isBipartite(int[][] graph) {
         int numberOfVertices = graph.length;
