@@ -251,8 +251,8 @@ public class AllBinaryTreeProblems {
 
     private void postOrderTraversal(Node root) {
         if(root != null){
-            inOrderTraversal(root.left);
-            inOrderTraversal(root.right);
+            postOrderTraversal(root.left);
+            postOrderTraversal(root.right);
             System.out.println(root.key+" : "+root.value);
         }
     }
@@ -268,8 +268,8 @@ public class AllBinaryTreeProblems {
     private void preOrderTraversal(Node root) {
         if(root != null){
             System.out.println(root.key+" : "+root.value);
-            inOrderTraversal(root.left);
-            inOrderTraversal(root.right);
+            preOrderTraversal(root.left);
+            preOrderTraversal(root.right);
         }
     }
 

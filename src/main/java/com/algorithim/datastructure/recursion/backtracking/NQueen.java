@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.backtracking;
+package com.algorithim.datastructure.recursion.backtracking;
 
 import java.util.ArrayList;
 import java.util.List;

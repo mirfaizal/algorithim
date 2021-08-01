@@ -74,7 +74,7 @@ public class LinkedListTest {
         linkedListTwo.addFront(9);
         linkedListTwo.addFront(5);
         //linkedListTwo.reverse();
-        System.out.println(linkedList.sumLinkedListBruteForce(linkedList.getFirstNode(),linkedListTwo.getFirstNode()));
+        System.out.println(linkedList.addTwoNumbers(linkedList.getFirstNode(),linkedListTwo.getFirstNode()));
     }
 
     @Test

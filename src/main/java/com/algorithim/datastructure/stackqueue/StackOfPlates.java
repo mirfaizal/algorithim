@@ -29,7 +29,7 @@ public class StackOfPlates {
         // Stack is empty
         if(stackOfPlates.size() == 0){
             head = newNode;
-        }else{
+        } else {
             Node current = stackOfPlates.get(currentStackIndex);
             if(currentStackTopIndex == capacity){
                 // If capacity reached add new Stack and Push

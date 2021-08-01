@@ -169,6 +169,34 @@ public class LinkedList {
         head = previous;
     }
 
+    public Node addTwoNumbers(Node l1, Node l2) {
+        int carry = 0;
+        int sum = 0;
+        int rem = 0;
+        while(l1 != null || l2 != null) {
+             int x = (l1 != null)?l1.data:0;
+             int y = (l2 != null)?l2.data:0;
+             sum = carry + x + y;
+             carry = sum / 10;
+             rem = sum % 10;
+             insert(rem);
+             if(l1!=null) l1 = l1.next;
+             if(l2 !=null) l2 = l2.next;
+
+        }
+        return node;
+    }
+    Node node = null;
+    private void insert(int val){
+        Node newNode = new Node(val);
+        if(node == null){
+            node = newNode;
+            return;
+        }
+        newNode.next = node;
+        node = newNode;
+    }
+
     public char[] sumLinkedListBruteForce(Node listOne, Node listTwo) {
         StringBuilder numberOne = new StringBuilder();
         while (listOne != null) {

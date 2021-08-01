@@ -15,7 +15,7 @@ public class PriorityQ {
     private static int [] sortUsingPriorityQueue(int [] arr){
         PriorityQueue<Integer> queue = new PriorityQueue<>(arr.length,(a,b)->(b-a));
         for(int i=0;i< arr.length;i++){
-            if(queue.size() == 5){
+            if(queue.size() == 3){
                 queue.poll();
             }
             queue.offer(arr[i]);

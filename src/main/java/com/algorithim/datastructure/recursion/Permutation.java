@@ -1,6 +1,7 @@
 package com.algorithim.datastructure.recursion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,7 +19,8 @@ public class Permutation {
 //    Output: [[1]]
 
     public static void main(String[] args) {
-        List<List<Integer>> subsets = permute(new int[]{1,2,3,3});
+        List<List<Integer>> subsets = permute(new int[]{1,2,3,3,1});
+
         for(List<Integer> list : subsets) {
             for (Integer i : list) System.out.print(i + " ");
             System.out.println();
@@ -26,12 +28,13 @@ public class Permutation {
     }
     static List<List<Integer>> result = new ArrayList<>();
     public static List<List<Integer>> permute(int[] nums) {
+        Arrays.sort(nums);
         permute(nums,0,new ArrayList<>());
         return result;
     }
     private static void permute(int[] problemDef, int index, List<Integer> slate) {
         //Base Case
-        if(index == problemDef.length){
+        if(index == problemDef.length) {
             result.add(new ArrayList<>(slate));
             return;
         }

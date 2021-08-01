@@ -31,7 +31,7 @@ public class SubsetWithDuplicates {
         }
         // Recursive Case
         int count = 0;
-        for(int i = index;i<problemDef.length;i++){
+        for(int i = index;i<problemDef.length;i++) {
             if(problemDef[i] != problemDef[index]) break;
             count++;
         }

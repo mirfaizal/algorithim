@@ -15,9 +15,33 @@ public class AllSorting {
         sortedArray = mergeSort(unSortedArray);
         displayArray(sortedArray);
         unSortedArray = new int[]{10, 16, 8, 12, 15, 6, 3, 9, 5};
-        quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
+//        quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
+//        displayArray(unSortedArray);
+        quickSortLomutosPartII(unSortedArray, 0, unSortedArray.length - 1);
         displayArray(unSortedArray);
 
+    }
+    private static void quickSortLomutosPartII(int[] array, int start, int end) {
+        if(start < end){
+            int partition = lomutosPartitionPartII(array,start,end);
+            quickSortLomutosPartII(array,start, partition);
+            quickSortLomutosPartII(array,partition + 1, end);
+        }
+    }
+
+    private static int lomutosPartitionPartII(int[] array, int start, int end) {
+        Random rand = new Random();
+        int pivot = rand.nextInt(end - start + 1) + start;
+        swap(array, pivot, start);
+        int orange = start;
+        for(int green = start + 1; green < array.length ; green++){
+            if(array[green] < array[start]){
+                orange++;
+                swap(array,green,orange);
+            }
+        }
+        swap(array,orange,start);
+        return orange;
     }
 
     private static void displayArray(int[] sortedArray) {

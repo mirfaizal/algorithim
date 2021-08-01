@@ -11,27 +11,21 @@ import java.util.Map;
 import static java.lang.System.in;
 
 
-class Prime {
-    void checkPrime( int ...array){
-        for(int i: array){
-            if(isPrime(i)){
-                System.out.print(i+" ");
-            }
-        }
-        System.out.println();
-    }
-    boolean isPrime(int n){
-        if(n <= 1) return false;
-        for(int i =2; i<n/2;i++)
-            if(n%i == 0) return false;
-        return true;
-    }
-}
+
 
 public class HackerRank {
 
+
+
+
     public static void main(String[] args) throws IOException {
-        System.out.println(addTwo(1,28888888));
+        String a[] = new String[]{"ab","dc","ef"};
+
+        List list1 = Arrays.asList(a);
+        String b[] = new String[]{"af","ee","ef"};
+
+        List list2 = Arrays.asList(b);
+        commonSubstring(list1,list2);
 ////        System.out.println(countingClosedPaths(649578));
 ////        inheritance();
 ////        System.out.println(findValidPairs(new int[] {1,1,2,2,3,3}, 1));
@@ -47,6 +41,34 @@ public class HackerRank {
 //        ob.checkPrime(n1,n2);
 //        ob.checkPrime(n1,n2,n3);
 //        ob.checkPrime(n1,n2,n3,n4,n5);
+
+    }
+
+    public static void commonSubstring(List<String> a, List<String> b) {
+
+
+        for(int i=0;i<a.size();i++) {
+
+            String first = a.get(i);
+            String second = b.get(i);
+            boolean matchFound = false;
+            outer :
+            for(char ch1 : first.toCharArray()){
+                for(char ch2 : second.toCharArray()){
+                    if(ch1 == ch2) {
+                        matchFound = true;
+                        break outer;
+                    }
+                }
+            }
+            if(!matchFound){
+                System.out.println("NO");
+            } else {
+                System.out.println("YES");
+            }
+        }
+
+
 
     }
 
@@ -141,6 +163,7 @@ class Rectangle implements Shape {
 final class ShapeFactory {
 
     public  Shape getShape(String shapeType){
+
         if(shapeType == null){
             return null;
         } else if (shapeType.equals("Square")) {
