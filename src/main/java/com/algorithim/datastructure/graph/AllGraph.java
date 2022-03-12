@@ -60,9 +60,9 @@ public class AllGraph {
     }
     static List<Integer> visitedRecursive = new ArrayList<>();
     private void dfs_recursive(int start){
+        visitedRecursive.add(start);
         for(Integer kid : adjVertices[start]){
             if(!visitedRecursive.contains(kid)){
-                visitedRecursive.add(kid);
                 dfs_recursive(kid);
             }
         }

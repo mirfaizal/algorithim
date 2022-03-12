@@ -313,7 +313,26 @@ public class AllBinaryTreeProblems {
                 if(node.left != null) queue.add(node.left);
             }
         }
+        getLeftView(root);
         return leftView;
+
+    }
+
+    private List<Integer> getLeftView(Node root){
+
+        List<Integer> left = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        while(!queue.isEmpty()){
+            int size = queue.size();
+            for(int i=0;i<size;i++){
+                Node child = queue.remove();
+                if(i == 0) left.add(child.key);
+                if(child.left != null) queue.add(child.left);
+                if(child.right != null) queue.add(child.right);
+            }
+        }
+        return left;
     }
 
     private List<Integer> rightView() {
