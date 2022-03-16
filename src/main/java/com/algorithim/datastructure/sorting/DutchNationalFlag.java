@@ -28,15 +28,15 @@ public class DutchNationalFlag {
     }
 
     private static void dutch_flag_sort1(char[] balls) {
-        int low = 0, mid = 0, high = balls.length - 1;
-        while(mid <= high){
-            if(balls[mid] == 'R'){
-                swap(balls,mid,low);
-                mid++;low++;
-            } else if(balls[mid] == 'G'){
-                mid++;
+        int low = 0, i = 0, high = balls.length - 1;
+        while(i <= high){
+            if(balls[i] == 'R'){
+                swap(balls,i,low);
+                i++;low++;
+            } else if(balls[i] == 'G'){
+                i++;
             } else {
-                swap(balls,mid,high);
+                swap(balls,i,high);
                 high--;
             }
         }
