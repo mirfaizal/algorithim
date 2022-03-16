@@ -4,13 +4,36 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-public class TwoSum {
+public class TwoThreeSum {
+
     public static void main(String[] args) {
         System.out.println(bruteForce(new int[] {5,10,10,10,5}, 10));
         System.out.println(presortingAndBinarySearch(new int[] {5,10,10,10,5}, 20));
         System.out.println(presortingAndTwoPointer(new int[] {5,10,10,10,5}, 10));
         System.out.println(hashTable(new int[] {5,10,10,10,5}, 10));
+
+        System.out.println(threeSumClosest(new int[] {5,10,10,10,5}, 30));
     }
+
+    public static boolean threeSumClosest(int [] numbers, int target) {
+        Arrays.sort(numbers);
+        for(int i = 0 ; i < numbers.length; i++){
+            int newTarget = target - numbers[i];
+            int j = i + 1;
+            int k = numbers.length - 1;
+            while(j < k)
+                if(numbers[j] + numbers[k] == newTarget){
+                    return true;
+                } else if(numbers[j] + numbers[k] > newTarget){
+                    k--;
+                } else {
+                    j++;
+                }
+        }
+        return false;
+    }
+
+
 
     private static boolean hashTable(int[] arr, int target) {
         Set<Integer> set = new HashSet<>();

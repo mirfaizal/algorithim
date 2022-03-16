@@ -41,12 +41,12 @@ public class KnightsTourOnAChessBoard {
         }
         int source = getGameIndex(start_row,start_col,cols);
         int destination = getGameIndex(end_row,end_col,cols);
-        bfs(source,destination,adjacencyList);
+        bfs(source,adjacencyList);
         if(numberOfHops[destination] == 0 ) return -1;
         return numberOfHops[destination];
     }
     static int [] numberOfHops;
-    private static void bfs(int source, int destination, List<Integer>[] adjacencyList) {
+    private static void bfs(int source, List<Integer>[] adjacencyList) {
         Queue<Integer> queue = new LinkedList<>();
         queue.add(source);
         Set<Integer> visited = new LinkedHashSet<>();

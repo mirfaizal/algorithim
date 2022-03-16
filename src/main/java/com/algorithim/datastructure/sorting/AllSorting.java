@@ -1,23 +1,24 @@
 package com.algorithim.datastructure.sorting;
 
+import java.util.Collections;
 import java.util.Random;
 
 public class AllSorting {
     public static void main(String[] args) {
         int[] unSortedArray = new int[]{10, 9, 8, 5, 6, 3, 1, 2};
         int[] sortedArray;
-        sortedArray = selectionSort(unSortedArray);
-        displayArray(sortedArray);
-        sortedArray = bubbleSort(unSortedArray);
-        displayArray(sortedArray);
-        sortedArray = insertionSort(unSortedArray);
-        displayArray(sortedArray);
-        sortedArray = mergeSort(unSortedArray);
-        displayArray(sortedArray);
-        unSortedArray = new int[]{10, 16, 8, 12, 15, 6, 3, 9, 5};
+        // sortedArray = selectionSort(unSortedArray);
+        // displayArray(sortedArray);
+        // sortedArray = bubbleSort(unSortedArray);
+        // displayArray(sortedArray);
+        // sortedArray = insertionSort(unSortedArray);
+        // displayArray(sortedArray);
+        // sortedArray = mergeSort(unSortedArray);
+        // displayArray(sortedArray);
+        unSortedArray = new int[]{10, 16, 8, 12, 15, 6, 3, 9, 5, 5, 10, 15, 13, 16};
 //        quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
 //        displayArray(unSortedArray);
-        quickSortLomutosPartII(unSortedArray, 0, unSortedArray.length - 1);
+quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
         displayArray(unSortedArray);
 
     }
@@ -134,24 +135,23 @@ public class AllSorting {
     private static void quickSortLomutos(int[] array, int left, int right) {
         if (left < right) {
             int partition = quicksort_helper(array, left, right);
-            quickSortLomutos(array, left, partition);
+            quickSortLomutos(array, left, partition - 1);
             quickSortLomutos(array, partition + 1, right);
         }
     }
 
-
-    private static int quicksort_helper(int[] array, int start, int end) {
+    public static int quicksort_helper(int[] array, int start, int end) {
         Random rand = new Random();
         int pivotIndex = rand.nextInt(end - start + 1) + start;
-        swap(array,pivotIndex,start);
+        swap(array, pivotIndex, end);
         int orange = start;
-        for(int green = start + 1; green < array.length; green++){
-            if(array[green] < array[start]){
+        for (int green = start; green < end ; green++) {
+            if (array[green] <  array[end] || array[green] ==  array[end]) {
+                swap(array, orange, green);
                 orange++;
-                swap(array,green,orange);
             }
         }
-        swap(array,orange,start);
+        swap(array, orange, end);
         return orange;
     }
 
