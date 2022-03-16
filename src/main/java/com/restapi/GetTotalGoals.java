@@ -1,4 +1,4 @@
-package com.rest;
+package com.restapi;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
