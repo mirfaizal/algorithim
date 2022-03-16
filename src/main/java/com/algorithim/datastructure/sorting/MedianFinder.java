@@ -32,44 +32,81 @@ import java.util.*;
 class MedianFinder {
 
     // Use MaxHeap to store smaller part of array
-    private Queue<Integer> maxHeap;
-    // Use Min Heap to store bigger part of the array
     private Queue<Integer> minHeap;
+    // Use Min Heap to store bigger part of the array
+    private Queue<Integer> maxHeap;
     public MedianFinder() {
         this.minHeap = new PriorityQueue<>();
-        this.maxHeap = new PriorityQueue<>((a,b)-> b-a);
+        this.maxHeap = new PriorityQueue<>((a, b)-> b-a);
     }
 
     public void addNum(int num) {
         // Always add numbers in mi
-        minHeap.offer(num);
+        maxHeap.offer(num);
         // Make sure top of Min Heap <= top of Max heap
-        if(!minHeap.isEmpty() && !maxHeap.isEmpty()){
-            if(minHeap.peek() >= maxHeap.peek()) {
-                int item = minHeap.poll();
-                maxHeap.offer(item);
+        if(!maxHeap.isEmpty() && !minHeap.isEmpty()){
+            if(maxHeap.peek() >= minHeap.peek()) {
+                int item = maxHeap.poll();
+                minHeap.offer(item);
             }
         }
         // Balance min heap if the size is more than 1
-        if(minHeap.size() > maxHeap.size() + 1){
-            int item = minHeap.poll();
-            maxHeap.offer(item);
-        }
-        // Balance max heap if the size is more than 1
         if(maxHeap.size() > minHeap.size() + 1){
             int item = maxHeap.poll();
             minHeap.offer(item);
         }
+        // Balance max heap if the size is more than 1
+        if(minHeap.size() > maxHeap.size() + 1){
+            int item = minHeap.poll();
+            maxHeap.offer(item);
+        }
     }
 
     public double findMedian() {
-        if(maxHeap.isEmpty()) return minHeap.isEmpty() ? -1 : minHeap.peek();
-        if((minHeap.size() + maxHeap.size()) % 2 == 0){
-            return (double) (minHeap.peek() + maxHeap.peek()) / 2;
+        if(minHeap.isEmpty()) return maxHeap.isEmpty() ? -1 : maxHeap.peek();
+        if((maxHeap.size() + minHeap.size()) % 2 == 0){
+            return (double) (maxHeap.peek() + minHeap.peek()) / 2;
         } else {
-            if(maxHeap.size() > minHeap.size()) return maxHeap.peek();
-            else return minHeap.peek();
+            if(minHeap.size() > maxHeap.size()) return minHeap.peek();
+            else return maxHeap.peek();
         }
+    }
+
+    // Complete the function below.
+    public ArrayList<Integer> online_median(List<Integer> stream) {
+        Queue<Integer> minHeap = new PriorityQueue<>();
+        Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b - a );
+        ArrayList<Integer> result = new ArrayList<>();
+        for(int data : stream){
+            // Use Max heap to store min items and Min heap to store max items
+            // Add items in max heap
+            maxHeap.offer(data);
+            // If max heap top item is bigger than min heap top, move it to max heap
+            if(!maxHeap.isEmpty() && !minHeap.isEmpty()) {
+                if (maxHeap.peek() >= minHeap.peek()) {
+                    int item = maxHeap.poll();
+                    minHeap.offer(item);
+                }
+            }
+            // If size of both heap grows bigger than 2, then balance
+            if(minHeap.size() > maxHeap.size() + 1) {
+                int item = minHeap.poll();
+                maxHeap.offer(item);
+            }
+            if(maxHeap.size() > minHeap.size() + 1) {
+                int item = maxHeap.poll();
+                minHeap.offer(item);
+            }
+            // Calculate median
+            if(maxHeap.size() == minHeap.size()) {
+                result.add((maxHeap.peek() + minHeap.peek()) / 2);
+            } else if (maxHeap.size() > minHeap.size()) {
+                result.add(maxHeap.peek());
+            } else {
+                result.add(minHeap.peek());
+            }
+        }
+        return result;
     }
 
     public static void main(String[] args) {
@@ -84,5 +121,8 @@ class MedianFinder {
         System.out.println(medianFinder.findMedian()); // return 2.5
         medianFinder.addNum(-5);    // arr[1, 2, 3, 4, 7]
         System.out.println(medianFinder.findMedian()); // return 3.0
+
+        ArrayList<Integer> result =  medianFinder.online_median(Arrays.asList(3, 8, 5, 2));
+        System.out.println();
     }
 }
