@@ -5,7 +5,7 @@ import java.util.List;
 
 public class LetterCase {
     public static void main(String[] args) {
-        List<String>  list = letter_case_permutations("a1b2");
+        List<String>  list = letter_case_permutations("a1b");
         for(String s : list) System.out.print(s+" ");
     }
     static List<String> result = new ArrayList<>();
@@ -23,13 +23,16 @@ public class LetterCase {
         char c = pd.charAt(index);
         if(Character.isDigit(c)){
             slate.append(c);
+            letter_case_permutations(pd,index + 1, slate);
+            slate.setLength(slate.length() - 1);
         }else {
             slate.append(Character.toUpperCase(c));
             letter_case_permutations(pd,index + 1, slate);
             slate.setLength(slate.length() - 1);
             slate.append(Character.toLowerCase(c));
+            letter_case_permutations(pd,index + 1, slate);
+            slate.setLength(slate.length() - 1);
         }
-        letter_case_permutations(pd,index + 1, slate);
-        slate.setLength(slate.length() - 1);
+
     }
 }

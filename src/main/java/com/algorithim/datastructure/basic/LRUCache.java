@@ -31,11 +31,11 @@ public class LRUCache {
     }
 
     public void add(DList node){
-        DList temp = head.next;
-        temp.prev = node;
+        DList firstItem = head.next;
+        firstItem.prev = node;
         head.next = node;
         node.prev = head;
-        node.next = temp;
+        node.next = firstItem;
     }
     public void remove(DList node){
         DList node_next = node.next;
