@@ -30,8 +30,8 @@ public class MeetingRoom {
         System.out.println(can_attend_all_meetings(inner));
     }
     public static int can_attend_all_meetings(List<List<Integer>> intervals) {
-        Collections.sort(intervals, Comparator.comparing(o -> o.get(0)));
-        //Collections.sort(intervals, (o1, o2) -> o1.get(0).compareTo(o2.get(0)));
+        //Collections.sort(intervals, Comparator.comparing(o -> o.get(0)));
+        Collections.sort(intervals, (o1, o2) -> o1.get(0).compareTo(o2.get(0)));
         int item = intervals.get(0).get(1);
         for(int i = 1; i < intervals.size(); i++){
             if(item > intervals.get(i).get(0)) return 0;
@@ -42,12 +42,7 @@ public class MeetingRoom {
 
     public static int can_attend_all_meetings1(List<List<Integer>> intervals) {
 
-        Collections.sort(intervals, new Comparator<List<Integer>>() {
-            @Override
-            public int compare(List<Integer> o1, List<Integer> o2) {
-                return o1.get(0).compareTo(o2.get(0));
-            }
-        });
+        Collections.sort(intervals, (o1, o2) -> o1.get(0).compareTo(o2.get(0)));
         if(intervals.size() <= 1) return 1;
         int item = intervals.get(0).get(1);
         for(int i=1;i<intervals.size();i++){

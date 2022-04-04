@@ -7,7 +7,7 @@ public class KthLargestInStringArray {
     public static void main(String[] args) {
         String[] unSortedArray = new String[]{"2","21","12","1"};
         displayArray(unSortedArray);
-        System.out.println(kthLargestNumber(unSortedArray, 3));
+        System.out.println(kthLargestNumber(unSortedArray, 1));
     }
 
     private static void displayArray(String[] sortedArray) {
@@ -49,15 +49,6 @@ public class KthLargestInStringArray {
         else if (a.length() > b.length()) return false;
         // Both are same length, need to check the ascii and compare
         return a.compareTo(b) < 0;
-
-        // Both are same length, need to check the ascii and compare
-//        for(int i = 0 ; i < a.length(); i++){
-//            char a1 = a.charAt(i);
-//            char b1 = b.charAt(i);
-//            if(a1 < b1) return true;
-//            else if(a1 > b1) return false;
-//        }
-//        return false;
     }
     private static void swap(String[] nums, int a, int b){
         String temp = nums[a];

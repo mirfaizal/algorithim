@@ -70,7 +70,6 @@ public class CourseSchedule {
         visited.add(node);
         for(int neighbour : adjList[node]){
             if(!visited.contains(neighbour)){
-                parent[neighbour] = node;
                 if(dfs(neighbour)) return true;
             } else if(departureTime[neighbour] == -1) return true;
         }

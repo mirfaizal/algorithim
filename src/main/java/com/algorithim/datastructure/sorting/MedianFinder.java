@@ -73,10 +73,10 @@ class MedianFinder {
     }
 
     // Complete the function below.
-    public ArrayList<Integer> online_median(List<Integer> stream) {
+    public ArrayList<Double> online_median(List<Integer> stream) {
         Queue<Integer> minHeap = new PriorityQueue<>();
         Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b - a );
-        ArrayList<Integer> result = new ArrayList<>();
+        ArrayList<Double> result = new ArrayList<>();
         for(int data : stream){
             // Use Max heap to store min items and Min heap to store max items
             // Add items in max heap
@@ -99,11 +99,11 @@ class MedianFinder {
             }
             // Calculate median
             if(maxHeap.size() == minHeap.size()) {
-                result.add((maxHeap.peek() + minHeap.peek()) / 2);
+                result.add((double) ((maxHeap.peek() + minHeap.peek()) / 2));
             } else if (maxHeap.size() > minHeap.size()) {
-                result.add(maxHeap.peek());
+                result.add(Double.valueOf(maxHeap.peek()));
             } else {
-                result.add(minHeap.peek());
+                result.add(Double.valueOf(minHeap.peek()));
             }
         }
         return result;
@@ -111,18 +111,20 @@ class MedianFinder {
 
     public static void main(String[] args) {
         MedianFinder medianFinder = new MedianFinder();
-        medianFinder.addNum(-1);    // arr = [1]
+        medianFinder.addNum(-100);    // arr = [1]
         System.out.println(medianFinder.findMedian()); // return 1.5 (i.e., (1 + 2) / 2)
-        medianFinder.addNum(-2);    // arr = [1, 2]
+        medianFinder.addNum(2);    // arr = [1, 2]
         System.out.println(medianFinder.findMedian()); // return 1.5 (i.e., (1 + 2) / 2)
-        medianFinder.addNum(-3);    // arr[1, 2, 3]
+        medianFinder.addNum(3);    // arr[1, 2, 3]
         System.out.println(medianFinder.findMedian()); // return 2.0
-        medianFinder.addNum(-4);    // arr[1, 2, 3, 7]
+        medianFinder.addNum(4);    // arr[1, 2, 3, 7]
         System.out.println(medianFinder.findMedian()); // return 2.5
-        medianFinder.addNum(-5);    // arr[1, 2, 3, 4, 7]
+        medianFinder.addNum(5);    // arr[1, 2, 3, 4, 7]
         System.out.println(medianFinder.findMedian()); // return 3.0
-
-        ArrayList<Integer> result =  medianFinder.online_median(Arrays.asList(3, 8, 5, 2));
+        medianFinder.addNum(10);    // arr[1, 2, 3, 4, 7]
+        System.out.println(medianFinder.findMedian()); // return 3.0
         System.out.println();
+        ArrayList<Double> result =  medianFinder.online_median(Arrays.asList(3, 8, 5, 2));
+        for(double i : result) System.out.println(i+" ");
     }
 }

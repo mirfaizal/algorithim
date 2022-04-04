@@ -18,7 +18,7 @@ public class AllSorting {
         unSortedArray = new int[]{10, 16, 8, 12, 15, 6, 3, 9, 5, 5, 10, 15, 13, 16};
 //        quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
 //        displayArray(unSortedArray);
-quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
+        quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
         displayArray(unSortedArray);
 
     }
