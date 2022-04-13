@@ -8,7 +8,7 @@ public class KthLongestStringInStream {
     private Queue<String> minHeap;
     KthLongestStringInStream(int k, String [] stream){
         this.k = k;
-        this.minHeap = new PriorityQueue<>((a,b)-> isBigger(a,b));
+        this.minHeap = new PriorityQueue<>(this::isBigger);
         for(String str : stream){
             minHeap.offer(str);
             if(minHeap.size() > k) minHeap.poll();

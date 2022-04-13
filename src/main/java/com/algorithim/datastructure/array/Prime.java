@@ -2,7 +2,7 @@ package com.algorithim.datastructure.array;
 
 public class Prime {
     public static void main(String[] args) {
-        checkPrime(4);
+        checkPrime(17);
        // checkPrime(1,2,3,4,5,6,7,8,9,11,12,13,14);
     }
     static void checkPrime( int ...array){

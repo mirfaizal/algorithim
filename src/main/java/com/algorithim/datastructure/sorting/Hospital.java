@@ -103,10 +103,6 @@ public class Hospital {
         Patient patient = new Patient(name, infectionLevel);
         patientQueue.offer(patient);
     }
-
-
-
-
 }
 
 
