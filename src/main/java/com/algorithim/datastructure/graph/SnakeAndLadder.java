@@ -91,7 +91,6 @@ public class SnakeAndLadder {
                     }
                     index++;
                 }
-                flag = false;
             } else {
                 for(int j=board[0].length-1;j>=0;j--){
                     gameMap.put(index,board[i][j]);
@@ -100,9 +99,8 @@ public class SnakeAndLadder {
                     }
                     index++;
                 }
-                flag = true;
             }
-
+            flag = !flag;
         }
         return gameMap;
     }
