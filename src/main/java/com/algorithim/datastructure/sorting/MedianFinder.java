@@ -1,6 +1,7 @@
 package com.algorithim.datastructure.sorting;
 
-// The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value and the median is the mean of the two middle values.
+// The median is the middle value in an ordered integer list. If the size of the list is even,
+// there is no middle value and the median is the mean of the two middle values.
 //
 // For example, for arr = [2,3,4], the median is 3.
 // For example, for arr = [2,3], the median is (2 + 3) / 2 = 2.5.
@@ -126,5 +127,7 @@ class MedianFinder {
         System.out.println();
         ArrayList<Double> result =  medianFinder.online_median(Arrays.asList(3, 8, 5, 2));
         for(double i : result) System.out.println(i+" ");
+        System.out.println();
     }
+
 }

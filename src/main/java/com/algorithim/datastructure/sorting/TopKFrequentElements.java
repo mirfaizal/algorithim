@@ -32,36 +32,13 @@ public class TopKFrequentElements {
             queue.offer(entry.getKey());
             if(queue.size() > k) queue.poll();
         }
-        Integer numbers[] = new Integer[] { 10, 20, 30, 40 };
-        List<Integer> list = Arrays.asList(numbers);
-        xx(list);
-        List<String> countriesList = Collections.unmodifiableList(new ArrayList<>());
+        return new ArrayList<>(queue);
 
-        list.get(0);
-        return new ArrayList(queue);
-
-    }
-
-    public static int method1() {
-        int value = 1;
-        try{
-            throw new ArrayIndexOutOfBoundsException();
-        }catch(ArrayIndexOutOfBoundsException e){
-            value = 2;
-            return value;
-        }finally{
-            value += 2;
-            return value;
-        }
-
-    }
-
-    private void xx(List<Integer> list) {
     }
 
     public static void main(String[] args) {
         TopKFrequentElements topKFrequentElements = new TopKFrequentElements();
-        List<Integer> result = topKFrequentElements.find_top_k_frequent_elements(new int [] {4, 4, 3, 5, 5, 1}, 2);
+        ArrayList<Integer> result = topKFrequentElements.find_top_k_frequent_elements(new int [] {4, 4, 3, 5, 5, 1}, 2);
         System.out.println();
     }
 }

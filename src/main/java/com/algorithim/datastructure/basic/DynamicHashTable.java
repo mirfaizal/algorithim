@@ -56,7 +56,7 @@ public class DynamicHashTable {
 
     private int index(String key) {
         // I could get it from key.hashCode() as well
-        // Sometime has can be negative, so multiplying by 0x7fffffff
+        // Sometime hash can be negative, so multiplying by 0x7fffffff
         return Objects.hash(key) & 0x7fffffff % capacity;
     }
 
