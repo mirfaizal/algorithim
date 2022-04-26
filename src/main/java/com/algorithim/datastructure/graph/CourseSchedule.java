@@ -24,6 +24,9 @@ public class CourseSchedule {
 
 
     //Input: n = 4, a = [1, 1, 3], b = [0, 2, 1]
+    // 3 -> 1 -> 0
+    // 3 -> 1 -> 2
+    
 
     public static void main(String[] args) {
         List<Integer> a = new ArrayList<>();
@@ -77,5 +80,7 @@ public class CourseSchedule {
         departureTime[node] = count++;
         return false;
     }
+    // We know that in a DAG, no back-edge is present. So if we order the vertices in order of their decreasing departure time,
+    // we will get the topological order of the graph (every edge going from left to right).
 
 }

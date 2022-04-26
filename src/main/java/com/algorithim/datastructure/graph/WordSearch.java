@@ -48,7 +48,9 @@ package com.algorithim.datastructure.graph;
 //    w = length of the word
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WordSearch {
     static class Pair {
@@ -58,7 +60,7 @@ public class WordSearch {
             this.y = y;
         }
         public String toString(){
-            return x+" " + y;
+            return x + " " + y;
         }
     }
     public static void main(String[] args) {
@@ -69,10 +71,10 @@ public class WordSearch {
                     { 't', 'f', 'n', 'n', 't', 'i' },
                     { 'x', 's', 'i', 'i', 'p', 't' }
                 };
-        String word = "catnip";
+        String word = "cat";
         findWord(word , grid);
     }
-    static List<List<Pair>> answer = new ArrayList<>();
+    static Set<List<Pair>> answer = new HashSet<>();
     static boolean[][] visited;
     static void findWord(String word, char[][] grid) {
         visited = new boolean[grid.length][grid[0].length];
@@ -103,11 +105,6 @@ public class WordSearch {
         dfs(grid, x, y + 1, index + 1, word, slate);
         dfs(grid, x - 1, y, index + 1, word, slate);
         dfs(grid, x, y - 1, index + 1, word, slate);
-
-//        if(x + 1 < grid.length && !visited[x][y] && grid[x][y] == word.charAt(index)) dfs(grid, x + 1, y, index + 1, word, slate);
-//        if(x - 1 >= 0 && !visited[x][y] && grid[x][y] == word.charAt(index)) dfs(grid, x - 1, y, index + 1, word, slate);
-//        if(y + 1 < grid[0].length && !visited[x][y] && grid[x][y] == word.charAt(index)) dfs(grid, x, y + 1, index + 1, word, slate);
-//        if(y - 1 >= 0 && !visited[x][y] && grid[x][y] == word.charAt(index))  dfs(grid, x, y - 1, index + 1, word, slate);
 
         slate.remove(slate.size() - 1);
 

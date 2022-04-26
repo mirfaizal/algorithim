@@ -55,13 +55,6 @@ class TopBottomColumnView {
         }
         System.out.println();
         System.out.println("Bottom View -");
-        for(Map.Entry<Integer,List<TreeNode>> entry : map.entrySet()){
-            int colIndex = entry.getKey();
-            List<TreeNode> list = entry.getValue();
-            for(TreeNode node1 : list){
-
-            }
-        }
         for(int i=minIndex;i<=maxIndex;i++){
             List<TreeNode> list = map.get(i);
             int max = Integer.MIN_VALUE;
@@ -113,7 +106,7 @@ Return Top View of binary tree.
      /    \
     2        3
   / \      /    \
- 4   5,6   7
+ 4   5,   6      7
       \
        55
         \

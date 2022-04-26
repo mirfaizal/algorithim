@@ -1,7 +1,9 @@
 package com.algorithim.datastructure.string;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Anagrams {
@@ -11,6 +13,33 @@ public class Anagrams {
         System.out.println(anagrams.anagrams("hello", "solleh")); // should return false
         System.out.println(anagrams.isAnagram("railsafety", "fairytales")); // should return true
         System.out.println(anagrams.isAnagram("hellos", "solleh")); // should return false
+        System.out.println(groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"}));
+    }
+
+//    49. Group Anagrams
+//    Given an array of strings strs, group the anagrams together. You can return the answer in any order.
+//    An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase,
+//    typically using all the original letters exactly once.
+//    Example 1:
+//
+//    Input: strs = ["eat","tea","tan","ate","nat","bat"]
+//    Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
+
+    public static  List<List<String>> groupAnagrams(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        // ["eat","tea","tan","ate","nat","bat"]
+        for(String str : strs){
+            char [] charArray = new char[26];
+            // ['e','a','t']
+            for(int i = 0; i < str.length(); i++){
+                charArray[str.charAt(i) - 'a']++;
+            }
+            String key = new String(charArray);
+            List<String> list = map.getOrDefault(key, new ArrayList<>());
+            list.add(str);
+            map.put(key, list);
+        }
+        return new ArrayList<>(map.values());
     }
 
     private boolean anagrams(String stringOne, String stringTwo) {

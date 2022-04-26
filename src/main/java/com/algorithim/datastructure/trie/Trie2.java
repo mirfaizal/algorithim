@@ -1,6 +1,6 @@
 package com.algorithim.datastructure.trie;
 
-class GFG
+class Trie2
 {
 
     // Trie node (considering only lowercase alphabets)

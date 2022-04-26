@@ -26,39 +26,27 @@ public class SpiralArray {
 
     private static int[][] spiralArray(int row, int col) {
         int[][] array = new int[row][col];
-        int top = 0, left = 0, right = col - 1, bottom = row - 1, direction = 0, index = 0;
+        int top = 0, left = 0, right = col - 1, bottom = row - 1, index = 0;
         while (top <= bottom && left <= right) {
-            if (direction == 0) {
-                for (int i = left; i <= right; i++) {
-                    array[top][i] = ++index;
-                }
-                direction = 1;
-                top++;
+            for (int i = left; i <= right; i++) {
+                array[top][i] = ++index;
             }
+            top++;
             if (top > bottom || left > right) {
                 break;
             }
-            if (direction == 1) {
-                for (int i = top; i <= bottom; i++) {
-                    array[i][right] = ++index;
-                }
-                direction = 2;
-                right--;
+            for (int i = top; i <= bottom; i++) {
+                array[i][right] = ++index;
             }
-            if (direction == 2) {
-                for (int i = right; i >= left; i--) {
-                    array[bottom][i] = ++index;
-                }
-                direction = 3;
-                bottom--;
+            right--;
+            for (int i = right; i >= left; i--) {
+                array[bottom][i] = ++index;
             }
-            if (direction == 3) {
-                for (int i = bottom; i >= top; i--) {
-                    array[i][left] = ++index;
-                }
-                direction = 0;
-                left++;
+            bottom--;
+            for (int i = bottom; i >= top; i--) {
+                array[i][left] = ++index;
             }
+            left++;
         }
         return array;
     }
@@ -68,45 +56,32 @@ public class SpiralArray {
         int row = matrix.length;
         int col = matrix[0].length;
         int top = 0, bottom = row - 1, left = 0, right = col - 1;
-        int direction = 0;
-        while (top <= bottom && left <= right) {
-            if (direction == 0) {
-                for (int i = left; i <= right; i++) {
-                    result.add(matrix[top][i]);
-                }
-                direction = 1;
-                top++;
+        while (left <= right) {
+            for (int i = left; i <= right; i++) {
+                result.add(matrix[top][i]);
             }
+            top++;
             if (top > bottom || left > right) {
                 break;
             }
-            if (direction == 1) {
-                for (int i = top; i <= bottom; i++) {
-                    result.add(matrix[i][right]);
-                }
-                direction = 2;
-                right--;
+            for (int i = top; i <= bottom; i++) {
+                result.add(matrix[i][right]);
             }
+            right--;
             if (top > bottom || left > right) {
                 break;
             }
-            if (direction == 2) {
-                for (int i = right; i >= left; i--) {
-                    result.add(matrix[bottom][i]);
-                }
-                direction = 3;
-                bottom--;
+            for (int i = right; i >= left; i--) {
+                result.add(matrix[bottom][i]);
             }
+            bottom--;
             if (top > bottom || left > right) {
                 break;
             }
-            if (direction == 3) {
-                for (int i = bottom; i >= top; i--) {
-                    result.add(matrix[i][left]);
-                }
-                direction = 0;
-                left++;
+            for (int i = bottom; i >= top; i--) {
+                result.add(matrix[i][left]);
             }
+            left++;
         }
         return result;
     }

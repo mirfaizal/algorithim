@@ -2,11 +2,8 @@ package com.algorithim.datastructure.sorting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.WeakHashMap;
 
 public class MeetingRoom {
 //    Given a list of meeting intervals where each interval consists of a start and an end time,
@@ -22,16 +19,26 @@ public class MeetingRoom {
 
     public static void main(String[] args) {
         List<List<Integer>> inner = new ArrayList<>();
-        Map<Integer,Integer> map = new WeakHashMap<>();
-        map.get(1);
         inner.add(new ArrayList<>(Arrays.asList(1,5)));
         inner.add(new ArrayList<>(Arrays.asList(6,8)));
         inner.add(new ArrayList<>(Arrays.asList(10,15)));
+        inner.add(new ArrayList<>(Arrays.asList(14,20)));
         System.out.println(can_attend_all_meetings(inner));
+        System.out.println(Arrays.deepToString(merge(new int[][]{{1, 5}, {6, 8}, {10, 15}, {14, 20}})));
     }
+
+    public static int[][] merge(int[][] intervals) {
+        Arrays.sort(intervals, (a, b) -> Integer.compare(a[0], b[0]));
+        LinkedList<int[]> merged = new LinkedList<>();
+        for (int[] interval : intervals) {
+            if (merged.isEmpty() || merged.getLast()[1] < interval[0]) merged.add(interval);
+            else merged.getLast()[1] = Math.max(merged.getLast()[1], interval[1]);
+        }
+        return merged.toArray(new int[merged.size()][]);
+    }
+
     public static int can_attend_all_meetings(List<List<Integer>> intervals) {
-        //Collections.sort(intervals, Comparator.comparing(o -> o.get(0)));
-        Collections.sort(intervals, (o1, o2) -> o1.get(0).compareTo(o2.get(0)));
+        intervals.sort((o1, o2) -> Integer.compare(o1.get(0), o2.get(0)));
         int item = intervals.get(0).get(1);
         for(int i = 1; i < intervals.size(); i++){
             if(item > intervals.get(i).get(0)) return 0;
@@ -39,17 +46,4 @@ public class MeetingRoom {
         }
         return 1;
     }
-
-    public static int can_attend_all_meetings1(List<List<Integer>> intervals) {
-
-        Collections.sort(intervals, (o1, o2) -> o1.get(0).compareTo(o2.get(0)));
-        if(intervals.size() <= 1) return 1;
-        int item = intervals.get(0).get(1);
-        for(int i=1;i<intervals.size();i++){
-            if(item > intervals.get(i).get(0)) return 0;
-            item = intervals.get(i).get(1);
-        }
-        return 1;
-    }
-
 }
