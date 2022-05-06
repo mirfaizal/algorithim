@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.graph;
+package com.algorithim.datastructure.practice;
 
 
 /*
