@@ -20,6 +20,7 @@ public class DistanceBetweenWords {
         queue.add(wordOne);
         visited.add(wordOne);
         int distance = 0;
+        int min = Integer.MAX_VALUE;
         while(!queue.isEmpty()) {
             int size = queue.size();
             distance++;

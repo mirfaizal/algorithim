@@ -31,11 +31,14 @@ m: length of the second user's browsing history
 
 */
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FindContiguousHistory {
 
     public static void main(String[] argv) {
-        String[] user0 = {"/start", "/green", "/blue", "/pink", "/register", "/orange", "/one/two"};
-        String[] user1 = {"/start", "/pink", "/register", "/orange", "/red", "a"};
+        String[] user0 = {"/start", "/green", "/blue", "/pink", "/register", "/orange"};
+        String[] user1 = {"/start", "/pink", "/register", "/orange", "/red"};
         String[] user2 = {"a", "/one", "/two"};
         String[] user3 = {"/pink", "/orange", "/yellow", "/plum", "/blue", "/tan", "/red", "/amber", "/HotRodPink", "/CornflowerBlue", "/LightGoldenRodYellow", "/BritishRacingGreen"};
         String[] user4 = {"/pink", "/orange", "/amber", "/BritishRacingGreen", "/plum", "/blue", "/tan", "/red", "/lavender", "/HotRodPink", "/CornflowerBlue", "/LightGoldenRodYellow"};
@@ -43,52 +46,37 @@ public class FindContiguousHistory {
         String[] user6 = {"/pink","/orange","/six","/plum","/seven","/tan","/red", "/amber"};
 
         FindContiguousHistory solution = new FindContiguousHistory();
-        String [] str = solution.findContiguousHistory(user0,user1);
-//        for(String s : str){
-//            System.out.println(s);
-//        }
-
+        List str = solution.findContiguousHistory(user1,user0);
+        System.out.println(str);
 
     }
 
-    private String[] findContiguousHistory(String [] arrayOne, String [] arrayTwo){
-        String [] contiguousArray;
-        String [] temporaryArray = new String[10];
-        int index1 =0;
-        int max =0;
-        int [][] tempArray = new int[arrayOne.length + 1][arrayTwo.length + 1];
-        int [] arrayOnePosition = new int[arrayOne.length];
-        int [] arrayTwoPosition = new int[arrayOne.length];
-        int index = 0;
-        for(int i=1; i< arrayOne.length + 1; i++){
-            for(int j=1; j< arrayTwo.length + 1; j++){
-                if(arrayOne[i-1] == arrayTwo[j-1]){
-                    tempArray[i][j] = tempArray[i-1][j-1] + 1;
-                    temporaryArray[index1++] = arrayOne[i-1];
-                } else {
-                    tempArray[i][j] = Math.max(tempArray[i][j-1] , tempArray[i-1][j]);
-                }
-                if(max < tempArray[i][j]){
-                    max = tempArray[i][j];
-                    arrayOnePosition[index] = i;
-                    arrayTwoPosition[index++] = j;
+    public static List<String> findContiguousHistory(String[] user1, String[] user2) {
+        List<String> result = new ArrayList<>();
+        if (user1.length == 0 || user2.length == 0) {
+            return result;
+        }
+        int[][] dp = new int[user1.length + 1][user2.length + 1];
+        int max = Integer.MIN_VALUE;
+        int endIndex = -1;
+        for (int i = user1.length - 1; i >= 0; i--) {
+            for (int j = user2.length - 1; j >= 0; j--) {
+                if (user1[i].equals(user2[j])) {
+                    dp[i][j] = dp[i + 1][j + 1] + 1;
+                    if (max < dp[i][j]) {
+                        max = dp[i][j];
+                        endIndex = j;
+                    }
+                    break;
                 }
             }
         }
-        contiguousArray = new String[max];
-        if(max == 1){
-            contiguousArray[0] = arrayOne[arrayOnePosition[1]];
-        }else {
-            for (int i = 0; i < max; i++) {
-                if(arrayOnePosition[i] == arrayOnePosition[i+1] - 1){
-                    contiguousArray[i] = arrayOne[arrayOnePosition[i] - 1];
-                }
-                System.out.println(arrayOnePosition[i] + " : " + arrayTwoPosition[i]);
-                System.out.println(arrayOne[arrayOnePosition[i] - 1] + " : " + arrayTwo[arrayTwoPosition[i] - 1]);
-
-            }
+        if (max == Integer.MIN_VALUE) {
+            return result;
         }
-        return contiguousArray;
+        for (int i = endIndex; i < endIndex + max; i++) {
+            result.add(user2[i]);
+        }
+        return result;
     }
-
 }

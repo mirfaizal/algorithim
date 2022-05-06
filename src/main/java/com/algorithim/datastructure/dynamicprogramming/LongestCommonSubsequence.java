@@ -1,7 +1,7 @@
 package com.algorithim.datastructure.dynamicprogramming;
 
 public class LongestCommonSubsequence {
-    public int longestCommonSubsequence(String text1, String text2) {
+    public static int longestCommonSubsequence(String text1, String text2) {
         int max = 0;
         char[] textOneCharArray = text1.toCharArray();
         char[] textTwoCharArray = text2.toCharArray();
@@ -19,5 +19,11 @@ public class LongestCommonSubsequence {
             }
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(longestCommonSubsequence("abcde","ace"));
+        System.out.println(longestCommonSubsequence("abc","abc"));
+        System.out.println(longestCommonSubsequence("abc","def"));
     }
 }
