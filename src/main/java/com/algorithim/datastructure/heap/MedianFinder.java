@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.sorting;
+package com.algorithim.datastructure.heap;
 
 // The median is the middle value in an ordered integer list. If the size of the list is even,
 // there is no middle value and the median is the mean of the two middle values.
@@ -110,6 +110,40 @@ class MedianFinder {
         return result;
     }
 
+    //    Input: nums = [1,3,-1,-3,5,3,6,7]
+    //    Sorted:     = [-3,-1,1,3,3,5,6,7]
+    //    Median     => 3 + 3 / 2 => 3
+    public List<Double> online_medianII(List<Integer> stream) {
+        Queue<Integer> minHeap = new PriorityQueue<>((a,b) -> (a-b));  // to store bigger items
+        Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> (b-a));  // to store smaller items
+        List<Double> answer = new ArrayList<>();
+        for(Integer number : stream){
+            maxHeap.offer(number);
+            if(!minHeap.isEmpty() && !maxHeap.isEmpty()){
+                if(maxHeap.peek() > minHeap.peek()){ // if max heap peek has bigger items than min heap peek, then remove and add it in minHeap
+                    minHeap.offer(maxHeap.poll());
+                }
+            }
+            if(minHeap.size() > maxHeap.size() + 1){
+                maxHeap.offer(minHeap.poll());
+            }
+            if(maxHeap.size() > minHeap.size() + 1){
+                minHeap.offer(maxHeap.poll());
+            }
+            if(maxHeap.size() == minHeap.size()){
+                double median = (double) (maxHeap.peek() + minHeap.peek() )/ 2;
+                answer.add(median);
+            } else {
+                if(maxHeap.size() > minHeap.size()){
+                    answer.add((double) maxHeap.peek());
+                } else {
+                    answer.add((double) minHeap.peek());
+                }
+            }
+        }
+        return answer;
+    }
+
     public static void main(String[] args) {
         MedianFinder medianFinder = new MedianFinder();
         medianFinder.addNum(-100);    // arr = [1]
@@ -125,7 +159,10 @@ class MedianFinder {
         medianFinder.addNum(10);    // arr[1, 2, 3, 4, 7]
         System.out.println(medianFinder.findMedian()); // return 3.0
         System.out.println();
-        ArrayList<Double> result =  medianFinder.online_median(Arrays.asList(3, 8, 5, 2));
+        List<Double> result =  medianFinder.online_median(Arrays.asList(3, 8, 5, 2));
+        for(double i : result) System.out.println(i+" ");
+        System.out.println();
+        result =  medianFinder.online_medianII(Arrays.asList(3, 8, 5, 2));
         for(double i : result) System.out.println(i+" ");
         System.out.println();
     }

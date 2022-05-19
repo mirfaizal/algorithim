@@ -34,7 +34,7 @@ public class EvaluateReversePolishNotation {
         Stack<Integer> stack = new Stack<>();
         for(String token : tokens){
             if(operatorMap.get(token) == null){
-                stack.push(Integer.parseInt(String.valueOf(token)));
+                stack.push(Integer.parseInt(token));
                 continue;
             }
             int number2 = stack.pop();

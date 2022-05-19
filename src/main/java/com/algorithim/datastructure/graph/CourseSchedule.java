@@ -40,7 +40,7 @@ public class CourseSchedule {
         System.out.println(can_be_completed(4,a,b));
     }
 
-    private static List<Integer>[] adjList;
+    private static List<Integer> [] adjList;
     private static Set<Integer> visited = new LinkedHashSet<>();
     private static int [] arrivalTime;
     private static int [] departureTime;
@@ -48,7 +48,7 @@ public class CourseSchedule {
     private static int [] parent;
     private static Deque<Integer> topologicalSort = new ArrayDeque<>();
     public static boolean can_be_completed(int n, List<Integer> a, List<Integer> b) {
-        adjList = new LinkedList[n];
+        adjList = new ArrayList[n];
         arrivalTime = new int[n];
         departureTime = new int[n];
         parent = new int[n];

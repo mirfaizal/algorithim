@@ -45,31 +45,31 @@ public class LRUCache {
             node_prev.next = node_next;
         }
     }
+
+    // <-1-><-2-><-3->
+
     public int get(int key) {
         int result = -1;
         DList node = this.map_cache.get(key);
         if(node != null){
-            moveToHead(node);
+            this.remove(node);
+            this.add(node);
             result =node.val;
         }
         System.out.println(result);
         return result;
     }
-    /**
-     * Move certain node in between to the head.
-     */
-    private void moveToHead(DList node){
-        this.remove(node);
-        this.add(node);
-    }
+
 
     public void put(int key, int value) {
         DList node = this.map_cache.get(key);
         if(node != null){
             // Node exist, and we need to update, since we are updating we need remove and add again to make it recently used
-            moveToHead(node);
+            this.remove(node);
+            this.add(node);
             node.val = value;
         } else {
+            // Capacity
             if(capacity == this.map_cache.size()){
                 this.map_cache.remove(this.tail.prev.prev.key);
                 remove(this.tail.prev.prev);

@@ -1,5 +1,7 @@
 package com.algorithim.datastructure.heap;
 
+import java.util.Collections;
+
 public class BinaryHeap {
     private int capacity;
     private int size = 0;
@@ -64,7 +66,7 @@ public class BinaryHeap {
         }
     }
 
-    private void insert(int data) {
+    private void offer(int data) {
         ensureCapacity();
         heap[size] = data;
         size++;
@@ -79,7 +81,7 @@ public class BinaryHeap {
         }
     }
 
-    private int delete() throws IllegalAccessException {
+    private int poll() throws IllegalAccessException {
         if (size == 0) {
             throw new IllegalAccessException();
         }
@@ -115,15 +117,15 @@ public class BinaryHeap {
 
     public static void main(String[] args) throws IllegalAccessException {
         BinaryHeap binaryHeap = new BinaryHeap(10);
-        binaryHeap.insert(90);
-        binaryHeap.insert(80);
-        binaryHeap.insert(10);
-        binaryHeap.insert(20);
-        binaryHeap.insert(50);
-        binaryHeap.insert(100);
-        binaryHeap.insert(1000);
+        binaryHeap.offer(90);
+        binaryHeap.offer(80);
+        binaryHeap.offer(10);
+        binaryHeap.offer(20);
+        binaryHeap.offer(50);
+        binaryHeap.offer(100);
+        binaryHeap.offer(1000);
         binaryHeap.print();
-        binaryHeap.delete();
+        binaryHeap.poll();
         binaryHeap.print();
     }
 }

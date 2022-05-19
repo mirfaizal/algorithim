@@ -2,6 +2,7 @@ package com.algorithim.datastructure.sorting;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class MeetingRoom {
     }
 
     public static int can_attend_all_meetings(List<List<Integer>> intervals) {
+        Collections.sort(intervals, (a, b) -> (a.get(0) - b.get(0)));
         intervals.sort((o1, o2) -> Integer.compare(o1.get(0), o2.get(0)));
         int item = intervals.get(0).get(1);
         for(int i = 1; i < intervals.size(); i++){

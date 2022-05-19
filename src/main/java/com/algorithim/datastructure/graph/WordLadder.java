@@ -29,7 +29,6 @@ public class WordLadder {
     public static int ladderLength(String beginWord, String endWord, List<String> wordList) {
         Set<String> set = new HashSet<>(wordList); // ["hot","dot","dog","lot","log","cog"]
         Queue<String> queue = new LinkedList<>();
-        set.remove(beginWord); // ["dot","dog","lot","log","cog"] , beginWord = "hot" , endWord = "cog"
         queue.add(beginWord);  // ["hot"]
         int level = 1;
         while(!queue.isEmpty()){
@@ -57,7 +56,7 @@ public class WordLadder {
     }
 
     public static void main(String[] args) {
-        assert(ladderLength("hit","cog",new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log","cog"))) == 5);
-        assert(ladderLength("hit","cog",new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log"))) == 0);
+        System.out.println(ladderLength("hit","cog",new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log","cog"))));
+        System.out.println((ladderLength("hit","cog",new ArrayList<>(Arrays.asList("hot","dot","dog","lot","log")))));
     }
 }

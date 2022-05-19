@@ -15,6 +15,8 @@ package com.algorithim.datastructure.practice;
 //    ['o', 'a', 'a', 'a', 'o', 'o'],
 //    ['k', 'a', 'i', 'c', 'k', 'i'],
 //    ]
+//    catnip -->
+
 //    word1 = "catnip"
 //    word2 = "cccc"
 //    word3 = "s"
@@ -47,103 +49,81 @@ package com.algorithim.datastructure.practice;
 //    c = number of columns
 //    w = length of the word
 
+import lombok.ToString;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class WordSearch {
+public class WordSearch2 {
     static class Pair {
-        int row;
-        int col;
+        int row; int col;
         Pair(int row, int col){
-            this.row = row;
             this.col = col;
+            this.row = row;
         }
         @Override
         public String toString(){
-            return this.row + " "+ this.col;
+            return row + " " +col;
         }
     }
 
-    static Set<List<Pair>> answer = new HashSet<>();
     static int rows;
     static int cols;
-    static boolean [][] visited;
-    public static Set<List<Pair>> findWord(char [][] grid, String word){
-        res = false;
+    static Set<List<Pair>> result = new HashSet<>();
+    static boolean [][]  visited;
+    static public Set<List<Pair>> wordSearch(char [][] grid, String word){
+        result = new HashSet<>();
         rows = grid.length;
         cols = grid[0].length;
         visited = new boolean[rows][cols];
-        for(int i=0; i < rows; i++){
-            for(int j = 0; j < cols; j++){
-                if(!visited[i][j]) dfsII(i,j,0,new StringBuilder(),word,grid);
+        for(int i = 0; i < rows; i++) {
+            for(int j = 0; j < cols; j++) {
+                if(!visited[i][j]) dfs(i,j,0,new ArrayList<>(),grid,word);
             }
         }
-        System.out.println(res);
-        return answer;
+        return result;
     }
 
-    static boolean res;
-    private static void dfsII(int i, int j, int index, StringBuilder slate, String word,char [][] grid){
+    private static void dfs(int i, int j, int index, ArrayList<Pair> slate, char[][] grid, String word) {
         if(index == word.length()){
-            if(slate.toString().equals(word)){
-                res = true;
-            }
+            result.add(new ArrayList<>(slate));
             return;
         }
-        if(res) return;
-        if(i >= rows || i < 0 || j >= cols || j < 0 || visited[i][j] || grid[i][j] != word.charAt(index)){
+        if(i >= rows || i < 0 || j >=cols || j < 0 || word.charAt(index) != grid[i][j] || visited[i][j]){
             return;
         }
-        visited[i][j] = true;
-        slate.append(word.charAt(index));
-        dfsII(i+1,j,index+1,slate,word,grid);
-        dfsII(i-1,j,index+1,slate,word,grid);
-        dfsII(i,j+1,index+1,slate,word,grid);
-        dfsII(i,j-1,index+1,slate,word,grid);
 
-        slate.setLength(slate.length() - 1);
-    }
-
-    private static void dfs(int i, int j, int index, List<Pair> slate, String word,char [][] grid){
-        if(index == word.length()){
-            answer.add(new ArrayList<>(slate));
-            return;
-        }
-        if(i >= rows || i < 0 || j >= cols || j < 0 || visited[i][j] || grid[i][j] != word.charAt(index)){
-            return;
-        }
-        visited[i][j] = true;
         slate.add(new Pair(i,j));
-        dfs(i+1,j,index+1,slate,word,grid);
-        dfs(i-1,j,index+1,slate,word,grid);
-        dfs(i,j+1,index+1,slate,word,grid);
-        dfs(i,j-1,index+1,slate,word,grid);
-
-        dfs(i-1,j-1,index+1,slate,word,grid);
-        dfs(i+1,j-1,index+1,slate,word,grid);
-        dfs(i-1,j+1,index+1,slate,word,grid);
-        dfs(i+1,j+1,index+1,slate,word,grid);
+        visited[i][j] = true;
+        dfs(i+1,j,index + 1, slate, grid, word);
+        dfs(i,j+1,index + 1, slate, grid, word);
+        dfs(i-1,j,index + 1, slate, grid, word);
+        dfs(i,j-1,index + 1, slate, grid, word);
 
         slate.remove(slate.size() - 1);
     }
 
     public static void main(String[] args) {
-
-        char [][] grid = {
+        char [][] grid = new char[][]{
                 {'c', 'c', 'x', 't', 'i', 'b'},
                 {'c', 'c', 'a', 't', 'n', 'i'},
                 {'a', 'c', 'n', 'n', 't', 't'},
-                {'t', 'c', 's', 'i', 'p', 't'},
-                {'a', 'o', 'o', 'o', 'a', 'a'},
-                {'o', 'a', 'a', 'a', 'o', 'o'},
-                {'k', 'a', 'i', 'c', 'k', 'i'},
+                    {'t', 'c', 's', 'i', 'p', 't'},
+                        {'a', 'o', 'o', 'o', 'a', 'a'},
+                            {'o', 'a', 'a', 'a', 'o', 'o'},
+                                {'k', 'a', 'i', 'c', 'k', 'i'}
         };
-//        Set<List<Pair>> pairList = findWord(grid,"soak");
-//        System.out.println(pairList.toString());
-//        pairList = findWord(grid,"catnip");
-//        System.out.println(pairList.toString());
-        System.out.println(findWord(grid,"xkib"));
+        System.out.println(wordSearch(grid,"catnip"));
+        System.out.println(wordSearch(grid,"cccc"));
+        System.out.println(wordSearch(grid,"s"));
+        System.out.println(wordSearch(grid,"bit"));
+        System.out.println(wordSearch(grid,"aoi"));
+        System.out.println(wordSearch(grid,"ki"));
+        System.out.println(wordSearch(grid,"aaa"));
+
     }
+
+
 }

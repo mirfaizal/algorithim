@@ -34,7 +34,7 @@ public class Queue<T> {
         return head.data;
     }
     public static void main(String[] args) {
-        Queue queue = new Queue();
+        Queue<String> queue = new Queue<>();
         queue.add("Faizal");
         queue.add("Mir");
         queue.add("Ali");

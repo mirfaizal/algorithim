@@ -1,4 +1,4 @@
-package com.algorithim.datastructure.array;
+package com.algorithim.datastructure.heap;
 
 public class MedianArray {
 
