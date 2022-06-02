@@ -16,7 +16,7 @@ public class CPULimitJob {
     public static void main(String[] args){
         //jobs = [(1, 3, 2), (2, 3, 1), (5, 3, 1)]
         Job job1 = new Job(1, 3, 2);
-        Job job2 = new Job(2, 3, 4);
+        Job job2 = new Job(2, 3, 3);
         Job job3 = new Job(5, 8, 1);
         List<Job> jobs = Arrays.asList(job1, job2, job3);
         int total_num_cups = 5;
@@ -24,7 +24,7 @@ public class CPULimitJob {
         System.out.println("Executed all ? "+executed_all);
     }
 
-    static class Job{
+    static class Job {
         int startTime;
         int endTime;
         int num_cup_required;
@@ -42,8 +42,8 @@ public class CPULimitJob {
         int index = 0;
         for(Job job : jobs){
             int startTime = job.startTime;
-            int endTime = job.endTime + startTime;
-            List list = endTime_map.getOrDefault(endTime, new ArrayList<>());
+            int endTime = job.endTime;
+            List<Integer> list = endTime_map.getOrDefault(endTime, new ArrayList<>());
             list.add(index);
             endTime_map.put(endTime, list);
             list = startTime_map.getOrDefault(startTime, new ArrayList<>());
@@ -54,21 +54,21 @@ public class CPULimitJob {
             min = Math.min(startTime, min);
             max = Math.max(max, endTime);
         }
-        int cur_num_cups = 0;
+        int currentNumberOfCPUs = 0;
         for(int time = min; time <= max; time++){
             if(startTime_map.containsKey(time)){
                 List<Integer> list = startTime_map.get(time);
                 for(int i : list){
-                    cur_num_cups += jobs.get(i).num_cup_required;
+                    currentNumberOfCPUs += jobs.get(i).num_cup_required;
                 }
             }
             if(endTime_map.containsKey(time)){
                 List<Integer> list = endTime_map.get(time);
                 for(int i : list){
-                    cur_num_cups -= jobs.get(i).num_cup_required;
+                    currentNumberOfCPUs -= jobs.get(i).num_cup_required;
                 }
             }
-            if(total_num_cups < cur_num_cups)
+            if(total_num_cups < currentNumberOfCPUs)
                 return false;
         }
         return true;

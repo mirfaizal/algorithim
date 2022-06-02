@@ -1,6 +1,6 @@
 package com.algorithim.datastructure.practice;
 
-/*
+/**
 We are working on a security system for a badged-access room in our company's building.
 
 We want to find employees who badged into our secured room unusually often.
@@ -27,7 +27,7 @@ badge_times = [
 
 // <"Paul" ,[1315,1355,1405,1416]>
 //
-// Dubly Queue
+// Doubly Ended Queue
 
 //  Time - O(nlogn) + O(n) + O(nk logk) =>> O(nlogn)
 // Space - O(n) + O(n) ==> O(n)

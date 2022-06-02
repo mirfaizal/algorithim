@@ -49,7 +49,6 @@ package com.algorithim.datastructure.practice;
 //    c = number of columns
 //    w = length of the word
 
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -110,10 +109,10 @@ public class WordSearch2 {
                 {'c', 'c', 'x', 't', 'i', 'b'},
                 {'c', 'c', 'a', 't', 'n', 'i'},
                 {'a', 'c', 'n', 'n', 't', 't'},
-                    {'t', 'c', 's', 'i', 'p', 't'},
-                        {'a', 'o', 'o', 'o', 'a', 'a'},
-                            {'o', 'a', 'a', 'a', 'o', 'o'},
-                                {'k', 'a', 'i', 'c', 'k', 'i'}
+                {'t', 'c', 's', 'i', 'p', 't'},
+                {'a', 'o', 'o', 'o', 'a', 'a'},
+                {'o', 'a', 'a', 'a', 'o', 'o'},
+                {'k', 'a', 'i', 'c', 'k', 'i'}
         };
         System.out.println(wordSearch(grid,"catnip"));
         System.out.println(wordSearch(grid,"cccc"));

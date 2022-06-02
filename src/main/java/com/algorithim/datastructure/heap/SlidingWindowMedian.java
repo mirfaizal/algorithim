@@ -44,7 +44,7 @@ public class SlidingWindowMedian {
         double [] medianArray = new double[stream.length - k + 1];
         int arrayIndex = 0;
 
-        Queue<Integer> minHeap = new PriorityQueue<>((a,b)->(a-b));
+        Queue<Integer> minHeap = new PriorityQueue<>();
         Queue<Integer> maxHeap = new PriorityQueue<>((a,b)->(b-a));
         for(int i = 0; i <= stream.length - k; i++){
             int slidingWindow = 0;
@@ -68,7 +68,8 @@ public class SlidingWindowMedian {
                 if(minHeap.size() > maxHeap.size() + 1){
                     int item = minHeap.poll();
                     maxHeap.offer(item);
-                } else if(maxHeap.size() > minHeap.size() + 1){
+                }
+                if(maxHeap.size() > minHeap.size() + 1){
                     int item = maxHeap.poll();
                     minHeap.offer(item);
                 }
