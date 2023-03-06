@@ -59,8 +59,8 @@ public class RemovingAnagrams {
 
     private static boolean isAnagram(String str1, String str2){
         int [] array = new int[128];
-        for(char c : str1.toCharArray()) array[c]++;
-        for(char c : str2.toCharArray()) array[c]--;
+        for(char c : str1.toCharArray()) array[c-'a']++;
+        for(char c : str2.toCharArray()) array[c-'a']--;
         for(int i : array){
             if(i != 0) return false;
         }

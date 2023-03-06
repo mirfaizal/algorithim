@@ -11,14 +11,14 @@ import java.util.TreeMap;
 
 /**
  * We are working on a security system for a badged-access room in our company's building.
- * <p>
+ *
  * We want to find employees who badged into our secured room unusually often. We have an unordered list of names and entry times over a single day.
  * Access times are given as numbers up to four digits in length using 24-hour time, such as "800" or "2250".
- * <p>
+ *
  * Write a function that finds anyone who badged into the room three or more times in a one-hour period.
  * Your function should return each of the employees who fit that criteria, plus the times that they badged in during the one-hour period.
  * If there are multiple one-hour periods where this was true for an employee, just return the earliest one for that employee.
- * <p>
+ *
  * badge_record = [
  * ["Paul",      "1355"], ["Jennifer",  "1910"], ["Jose",    "835"],
  * ["Jose",       "830"], ["Paul",      "1315"], ["Chloe",     "0"],
@@ -32,8 +32,9 @@ import java.util.TreeMap;
  * ["Amos",       "500"], ["Amos",       "503"], ["Amos",    "504"],
  * ["Amos",       "601"], ["Amos",       "602"], ["Paul",   "1416"],
  * ];
+ *
  * n: length of the badge records array
- * <p>
+ *
  * Expected output (in any order)
  * Paul: 1315 1355 1405
  * Jose: 830 835 855 915 930
@@ -59,6 +60,7 @@ public class BadgedAccess {
             Deque<String> deque = new ArrayDeque<>();
             for(String time : timeList){
                 deque.offer(time);
+                assert deque.peek() != null;
                 int currentTime = getCurrentTime(deque.peek());
                 int lastTime = getCurrentTime(deque.getLast());
                 if(lastTime - currentTime >= 60){

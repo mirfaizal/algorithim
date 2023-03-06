@@ -21,9 +21,7 @@ public class MergeNames {
             array[index++] = s;
         }
         return array;
-
     }
-
 
     public static void main(String[] args) {
         String[] names1 = new String[] {"Ava", "Emma", "Olivia"};
@@ -31,3 +29,8 @@ public class MergeNames {
         System.out.println(String.join(", ", MergeNames.uniqueNames(names1, names2))); // should print Ava, Emma, Olivia, Sophia
     }
 }
+
+
+// list 1 = ["Ava", "Emma", "Olivia"]
+// list 2 = ["Olivia", "Sophia", "Emma"]
+// final List = ["Olivia", "Ava", "Emma", "Sophia"]

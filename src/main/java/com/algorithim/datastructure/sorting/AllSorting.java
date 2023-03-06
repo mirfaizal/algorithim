@@ -1,6 +1,7 @@
 package com.algorithim.datastructure.sorting;
 
-import java.util.Collections;
+import com.algorithim.datastructure.ik.sorting.MergeSort;
+
 import java.util.Random;
 
 public class AllSorting {
@@ -13,7 +14,7 @@ public class AllSorting {
         // displayArray(sortedArray);
         // sortedArray = insertionSort(unSortedArray);
         // displayArray(sortedArray);
-        // sortedArray = mergeSort(unSortedArray);
+         sortedArray = mergeSort(unSortedArray);
         // displayArray(sortedArray);
         unSortedArray = new int[]{10, 16, 8, 12, 15, 6, 3, 9, 5, 5, 10, 15, 13, 16};
 //        quickSortLomutos(unSortedArray, 0, unSortedArray.length - 1);
@@ -115,7 +116,9 @@ public class AllSorting {
 
     private static int[] merge(int[] left, int[] right) {
         int[] result = new int[left.length + right.length];
-        int index = 0, leftIndex = 0, rightIndex = 0;
+        int index = 0;
+        int leftIndex = 0;
+        int rightIndex = 0;
         while (leftIndex < left.length || rightIndex < right.length) {
             if (leftIndex < left.length && rightIndex < right.length) {
                 if (left[leftIndex] < right[rightIndex]) {
@@ -125,7 +128,7 @@ public class AllSorting {
                 }
             } else if (leftIndex < left.length) {
                 result[index++] = left[leftIndex++];
-            } else if (rightIndex < right.length) {
+            } else {
                 result[index++] = right[rightIndex++];
             }
         }

@@ -38,7 +38,7 @@ public class TopKFrequentElements {
 
     public static void main(String[] args) {
         TopKFrequentElements topKFrequentElements = new TopKFrequentElements();
-        ArrayList<Integer> result = topKFrequentElements.find_top_k_frequent_elements(new int [] {4, 4, 3, 5, 5, 1}, 2);
-        System.out.println();
+        ArrayList<Integer> result = topKFrequentElements.find_top_k_frequent_elements(new int [] {4, 4, 5, 5, 5, 1}, 1);
+        System.out.println(result);
     }
 }

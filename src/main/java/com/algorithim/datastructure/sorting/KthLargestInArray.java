@@ -1,12 +1,26 @@
 package com.algorithim.datastructure.sorting;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Random;
 
 public class KthLargestInArray {
-    public static void main(String[] args) {
-        int[] unSortedArray = new int[]{10, 16, 8, 12, 15, 6, 3, 9, 5};
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        int[] unSortedArray = new int[]{5, 1, 10, 3, 2};
         displayArray(unSortedArray);
-        System.out.println(quickSelect(unSortedArray, 0, unSortedArray.length - 1,6));
+        System.out.println(quickSelect(unSortedArray, 0, unSortedArray.length - 1,2));
+    }
+
+    public static int quickSelect(int[] nums, int start, int end, int k) throws NoSuchAlgorithmException {
+        if(start <= end) {
+            Random rand = SecureRandom.getInstanceStrong();
+            int pivot = rand.nextInt(end - start + 1) + start;
+            int partition = partition(nums, start, end, pivot);
+            if (k == partition) return nums[k];
+            else if (partition > nums.length - k) return quickSelect(nums, start, partition - 1, k);
+            return quickSelect(nums, partition + 1, end, k);
+        }
+        return -1;
     }
 
     public static int partition(int[] nums,int start, int end, int pivot_index) {
@@ -23,14 +37,7 @@ public class KthLargestInArray {
         return orange;
     }
 
-    public static int quickSelect(int[] nums, int start, int end, int k) {
-        Random rand = new Random();
-        int pivot = rand.nextInt(end - start + 1) + start;
-        int partition = partition(nums,start, end, pivot);
-        if (k == partition) return nums[k];
-        else if (partition > k) return quickSelect(nums,start, partition - 1, k);
-        return quickSelect(nums,partition + 1, end, k);
-    }
+
 
     private static void swap(int[] arr, int pivotIndex, int start) {
         int temp = arr[pivotIndex];

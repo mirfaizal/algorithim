@@ -54,7 +54,6 @@ public class ExpressionTree {
         TreeNode(String value){
             this.value = value;
         }
-        @Override
         public int evaluate(){
             return dfs(this);
         }

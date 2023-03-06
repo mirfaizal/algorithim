@@ -3,8 +3,8 @@ package com.algorithim.datastructure.sorting;
 import java.util.*;
 
 public class KthBiggestStringInStream {
-    private int k;
-    private Queue<String> minHeap;
+    private final int k;
+    private final Queue<String> minHeap;
     KthBiggestStringInStream(int k, String [] stream){
         this.k = k;
         this.minHeap = new PriorityQueue<>(String::compareTo);

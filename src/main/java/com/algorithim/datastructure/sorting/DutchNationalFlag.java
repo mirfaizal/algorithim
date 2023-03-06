@@ -28,7 +28,9 @@ public class DutchNationalFlag {
     }
 
     private static void dutch_flag_sort1(char[] balls) {
-        int left = 0, i = 0, right = balls.length - 1;
+        int left = 0;
+        int i = 0;
+        int right = balls.length - 1;
         while(i <= right){
             if(balls[i] == 'R'){
                 swap(balls,i,left);
@@ -43,12 +45,15 @@ public class DutchNationalFlag {
     }
 
     private static void dutch_flag_sort(char[] balls) {
-        int r = 0, g = 0, b = balls.length - 1, i = 0, j = balls.length - 1;
+        int r = 0;
+        int b = balls.length - 1;
+        int i = 0;
+        int j = balls.length - 1;
         while (i < j ){
             if(balls[r] != 'R' && r < balls.length - 1) r++;
             else if(balls[i] != 'R' && balls[r] == 'R'){
                 swap(balls,i,r);
-                i++; g++;
+                i++;
             }
             else if(balls[b] != 'B' && b > 0) b--;
             else if(balls[j] != 'B' && balls[b] == 'B'){

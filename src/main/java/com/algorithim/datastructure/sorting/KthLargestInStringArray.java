@@ -17,16 +17,16 @@ public class KthLargestInStringArray {
 
     public static String kthLargestNumber(String[] nums, int k) {
         int size = nums.length;
-        return quickselect(nums, 0 , size - 1, size - k);
+        return quickSelect(nums, 0 , size - 1, size - k);
     }
-    public static String quickselect(String[] nums, int start, int end, int k) {
+    public static String quickSelect(String[] nums, int start, int end, int k) {
         Random rand = new Random();
         int pivot = rand.nextInt(end - start + 1) + start;
         int partition = partition(nums,start, end, pivot);
         if (k == partition)return nums[k];
         else if (partition > k)
-            return quickselect(nums,start, partition - 1, k);
-        return quickselect(nums,partition + 1, end, k);
+            return quickSelect(nums,start, partition - 1, k);
+        return quickSelect(nums,partition + 1, end, k);
     }
 
 

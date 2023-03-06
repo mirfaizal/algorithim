@@ -1,7 +1,6 @@
 package com.algorithim.datastructure.sorting;
 
 import java.util.PriorityQueue;
-import java.util.Random;
 
 public class PriorityQ {
     public static void main(String[] args) {
@@ -12,10 +11,10 @@ public class PriorityQ {
     private static int [] sortUsingPriorityQueue(int [] arr){
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b)->(b-a));
         PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-        for(int i=0;i< arr.length;i++){
-            maxHeap.offer(arr[i]);
-            minHeap.offer(arr[i]);
-            if(maxHeap.size() == 10){
+        for (int j : arr) {
+            maxHeap.offer(j);
+            minHeap.offer(j);
+            if (maxHeap.size() == 10) {
                 maxHeap.poll();
                 minHeap.poll();
             }

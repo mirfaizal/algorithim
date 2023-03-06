@@ -25,8 +25,7 @@ public class KthLargestInStream {
     }
 
     public static void main(String[] args) {
-        KthLargestInStream kthLargestInStream = new KthLargestInStream();
-        List<Integer> result = kthLargestInStream.kth_largest(2, Arrays.asList(4,6),Arrays.asList(5,2,20));
-        System.out.println();
+        List<Integer> result = kth_largest(4, Arrays.asList(4,6),Arrays.asList(5,2,20));
+        System.out.println(result.get(0));
     }
 }
